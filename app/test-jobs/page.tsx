@@ -1,67 +1,62 @@
-import type { Metadata } from "next"
-import Link from "next/link"
-import { ArrowRight, Users, Lightbulb, Target, Heart, Zap, Network } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Section, PageHeader } from "@/components/layout/section"
-import { SectionIntro } from "@/components/sections/section-intro"
-import { JobCard } from "@/components/cards/job-card"
-import { ValuePillar } from "@/components/blocks/value-blocks"
+import type { Metadata } from "next";
+import Link from "next/link";
+import {
+  ArrowRight,
+  Users,
+  Lightbulb,
+  Target,
+  Heart,
+  Zap,
+  Network,
+} from "lucide-react";
 
+import { Button } from "@/components/ui/button";
+import { Section } from "@/components/layout/section";
+import { SectionIntro } from "@/components/sections/section-intro";
+import { JobCard } from "@/components/cards/job-card";
+import { ValuePillar } from "@/components/blocks/value-blocks";
 
 export const metadata: Metadata = {
-  title: "Careers",
-  description: "Join the pixiQ team. Help us create digital experiences where creativity, technology and measurable impact come together.",
-}
+  title: "Test Careers",
+  description:
+    "Join the PixIQ team. Help us create digital experiences where creativity, technology and measurable impact come together.",
+};
+
 async function getJobs() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/jobs`, {
+  const res = await fetch("http://localhost:1337/api/jobs", {
     cache: "no-store",
-  })
+  });
 
   if (!res.ok) {
-    throw new Error("Failed to fetch jobs")
+    throw new Error("Failed to fetch jobs");
   }
 
-  const json = await res.json()
-
-  console.log("STRAPI JOBS:", json) // 👈 handig om te debuggen
-
-  return json.data || []
+  const data = await res.json();
+  return data.data || [];
 }
-/**
- * Careers Overview Page
- * IMPORTANT: This page is designed to be publishable early, before the full site
- * Future: Add ATS integration, job alerts, video content
- */
-export default async function CareersPage() {
-  const jobs = await getJobs()
+
+function getDepartment(job: any) {
+  return job.department || "Sales";
+}
+
+export default async function TestJobsPage() {
+  const jobs = await getJobs();
 
   return (
     <>
-      {/* Hero */}
       <CareersHero />
-
-      {/* Why PixIQ */}
       <WhyPixIQSection />
-
-      {/* Culture & Values */}
       <CultureValuesSection />
-
-      {/* Open Positions */}
       <OpenPositionsSection jobs={jobs} />
-
-      {/* Spontaneous Application */}
       <SpontaneousApplicationSection />
-
-      {/* Contact CTA */}
       <ContactSection />
     </>
-  )
+  );
 }
 
 function CareersHero() {
   return (
     <section className="relative pt-32 lg:pt-44 pb-20 lg:pb-32 overflow-hidden">
-      {/* Abstract Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-pixiq-secondary/8 rounded-full blur-3xl" />
         <div className="absolute top-1/3 -left-32 w-[400px] h-[400px] bg-pixiq-primary/6 rounded-full blur-3xl" />
@@ -80,7 +75,8 @@ function CareersHero() {
             </span>
           </h1>
           <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-2xl mb-10 text-pretty">
-            Help us create digital experiences where creativity, technology and measurable impact come together.
+            Help us create digital experiences where creativity, technology and
+            measurable impact come together.
           </p>
           <Button
             asChild
@@ -95,14 +91,13 @@ function CareersHero() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function WhyPixIQSection() {
   return (
     <Section className="bg-muted/30">
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        {/* Content */}
         <div>
           <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
             Why PixIQ
@@ -112,39 +107,54 @@ function WhyPixIQSection() {
           </h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
-              At PixIQ, you won&apos;t just build digital experiences - you&apos;ll transform how organizations communicate with their audiences. Our work spans industries and continents, from retail giants to cultural institutions.
+              At PixIQ, you won&apos;t just build digital experiences -
+              you&apos;ll transform how organizations communicate with their
+              audiences. Our work spans industries and continents, from retail
+              giants to cultural institutions.
             </p>
             <p>
-              We&apos;re a team of strategists, technologists, and creative thinkers who believe technology should serve human experiences. We tackle complex challenges, push boundaries, and celebrate wins together.
+              We&apos;re a team of strategists, technologists, and creative
+              thinkers who believe technology should serve human experiences. We
+              tackle complex challenges, push boundaries, and celebrate wins
+              together.
             </p>
             <p>
-              If you&apos;re looking for meaningful work with real impact, a team that values your expertise, and opportunities to grow - you&apos;ve found your place.
+              If you&apos;re looking for meaningful work with real impact, a
+              team that values your expertise, and opportunities to grow -
+              you&apos;ve found your place.
             </p>
           </div>
         </div>
 
-        {/* Visual / Stats */}
         <div className="grid grid-cols-2 gap-6">
           <div className="p-6 rounded-xl bg-card border border-border text-center">
-            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">50+</div>
+            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">
+              50+
+            </div>
             <div className="text-sm text-muted-foreground">Team members</div>
           </div>
           <div className="p-6 rounded-xl bg-card border border-border text-center">
-            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">12+</div>
+            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">
+              12+
+            </div>
             <div className="text-sm text-muted-foreground">Years of growth</div>
           </div>
           <div className="p-6 rounded-xl bg-card border border-border text-center">
-            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">150+</div>
+            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">
+              150+
+            </div>
             <div className="text-sm text-muted-foreground">Projects delivered</div>
           </div>
           <div className="p-6 rounded-xl bg-card border border-border text-center">
-            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">15+</div>
+            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">
+              15+
+            </div>
             <div className="text-sm text-muted-foreground">Countries served</div>
           </div>
         </div>
       </div>
     </Section>
-  )
+  );
 }
 
 function CultureValuesSection() {
@@ -152,34 +162,40 @@ function CultureValuesSection() {
     {
       icon: Users,
       title: "Collaboration",
-      description: "We work as one team, supporting each other and our clients to achieve exceptional results together.",
+      description:
+        "We work as one team, supporting each other and our clients to achieve exceptional results together.",
     },
     {
       icon: Heart,
       title: "Trust",
-      description: "We build relationships on transparency, reliability, and mutual respect - internally and externally.",
+      description:
+        "We build relationships on transparency, reliability, and mutual respect - internally and externally.",
     },
     {
       icon: Lightbulb,
       title: "Knowledge-driven",
-      description: "We invest in learning, share expertise generously, and stay curious about new possibilities.",
+      description:
+        "We invest in learning, share expertise generously, and stay curious about new possibilities.",
     },
     {
       icon: Target,
       title: "Optimization",
-      description: "We continuously improve - our processes, our solutions, and ourselves - never settling for good enough.",
+      description:
+        "We continuously improve - our processes, our solutions, and ourselves - never settling for good enough.",
     },
     {
       icon: Zap,
       title: "Innovation",
-      description: "We embrace new ideas and technologies that create real value, not just novelty for its own sake.",
+      description:
+        "We embrace new ideas and technologies that create real value, not just novelty for its own sake.",
     },
     {
       icon: Network,
       title: "Connected thinking",
-      description: "We see the bigger picture, connecting dots across disciplines to create integrated solutions.",
+      description:
+        "We see the bigger picture, connecting dots across disciplines to create integrated solutions.",
     },
-  ]
+  ];
 
   return (
     <Section>
@@ -202,7 +218,7 @@ function CultureValuesSection() {
         ))}
       </div>
     </Section>
-  )
+  );
 }
 
 function OpenPositionsSection({ jobs }: { jobs: any[] }) {
@@ -215,21 +231,20 @@ function OpenPositionsSection({ jobs }: { jobs: any[] }) {
       />
 
       <div className="space-y-4">
-      
-  {(jobs || []).map((job: any) => (
-  <JobCard
-    key={String(job.Slug || "")}
-    title={String(job.Title || "")}
-    location={String(job.Location || "")}
-    department={String(job.department || job.Department || "General")}
-    type={String(job.employmentType || "")}
-    excerpt={String(job.summary || job.intro || "")}
-    href={`/careers/${String(job.Slug || "")}`}
-  />
-))}
+        {jobs.map((job) => (
+          <JobCard
+            key={job.Slug}
+            title={job.Title}
+            location={job.Location}
+            department={getDepartment(job)}
+            type={job.employmentType}
+            excerpt={job.summary || job.intro || ""}
+            href={`/test-jobs/${job.Slug}`}
+          />
+        ))}
       </div>
     </Section>
-  )
+  );
 }
 
 function SpontaneousApplicationSection() {
@@ -240,7 +255,10 @@ function SpontaneousApplicationSection() {
           Don&apos;t see the right role?
         </h2>
         <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-          We&apos;re always interested in meeting talented people, even if we don&apos;t have a specific opening right now. Send us your CV and tell us about yourself - we&apos;ll keep you in mind for future opportunities.
+          We&apos;re always interested in meeting talented people, even if we
+          don&apos;t have a specific opening right now. Send us your CV and tell
+          us about yourself - we&apos;ll keep you in mind for future
+          opportunities.
         </p>
         <Button
           asChild
@@ -255,7 +273,7 @@ function SpontaneousApplicationSection() {
         </Button>
       </div>
     </Section>
-  )
+  );
 }
 
 function ContactSection() {
@@ -266,7 +284,8 @@ function ContactSection() {
           Ready to start a conversation?
         </h2>
         <p className="text-lg text-white/70 mb-8 leading-relaxed">
-          Whether you have questions about a specific role or want to learn more about life at PixIQ, we&apos;d love to hear from you.
+          Whether you have questions about a specific role or want to learn more
+          about life at PixIQ, we&apos;d love to hear from you.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button
@@ -285,12 +304,10 @@ function ContactSection() {
             variant="outline"
             className="border-white/30 text-white hover:bg-white/10 hover:text-white font-medium px-8"
           >
-            <a href="mailto:careers@pixiq.com">
-              Email careers@pixiq.com
-            </a>
+            <a href="mailto:hello@pixiq.eu">Email hello@pixiq.eu</a>
           </Button>
         </div>
       </div>
     </Section>
-  )
+  );
 }

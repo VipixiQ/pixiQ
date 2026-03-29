@@ -11,32 +11,15 @@ export const metadata: Metadata = {
 
 const offices = [
   {
-    city: 'Amsterdam',
-    country: 'Netherlands',
-    address: 'Herengracht 182',
-    postalCode: '1016 BR Amsterdam',
-    phone: '+31 20 123 4567',
-    email: 'amsterdam@pixiq.com',
+    city: 'Ostend',
+    country: 'Belgium',
+    address: 'Torhoutsteenweg 649A',
+    postalCode: '8400 Ostend',
+    phone: '+32 50 96 16 16',
+    email: 'hello@pixiq.eu',
     isHeadquarters: true,
   },
-  {
-    city: 'London',
-    country: 'United Kingdom',
-    address: '100 Liverpool Street',
-    postalCode: 'EC2M 2RH London',
-    phone: '+44 20 7123 4567',
-    email: 'london@pixiq.com',
-    isHeadquarters: false,
-  },
-  {
-    city: 'New York',
-    country: 'United States',
-    address: '350 Fifth Avenue',
-    postalCode: 'NY 10118 New York',
-    phone: '+1 212 123 4567',
-    email: 'newyork@pixiq.com',
-    isHeadquarters: false,
-  },
+  
 ]
 
 const contactReasons = [
@@ -133,7 +116,7 @@ export default function ContactPage() {
               {/* Quick Contact */}
               <div className="space-y-4 mb-12">
                 <a
-                  href="tel:+31201234567"
+                  href="tel:+3250961616"
                   className="flex items-center gap-4 p-4 bg-muted/50 rounded-lg hover:bg-muted transition-colors group"
                 >
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -141,12 +124,12 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Call us</p>
-                    <p className="font-semibold text-foreground">+31 20 123 4567</p>
+                    <p className="font-semibold text-foreground">+32 50 96 16 16</p>
                   </div>
                 </a>
 
                 <a
-                  href="mailto:hello@pixiq.com"
+                  href="mailto:hello@pixiq.eu"
                   className="flex items-center gap-4 p-4 bg-muted/50 rounded-lg hover:bg-muted transition-colors group"
                 >
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -154,7 +137,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Email us</p>
-                    <p className="font-semibold text-foreground">hello@pixiq.com</p>
+                    <p className="font-semibold text-foreground">hello@pixiq.eu</p>
                   </div>
                 </a>
 
@@ -164,7 +147,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Business hours</p>
-                    <p className="font-semibold text-foreground">Mon-Fri: 9:00 - 18:00 CET</p>
+                    <p className="font-semibold text-foreground">Mon-Fri: 8:30 - 17:00</p>
                   </div>
                 </div>
               </div>
@@ -194,10 +177,10 @@ export default function ContactPage() {
         <Container>
           <div className="text-center mb-12">
             <h2 className="font-serif font-bold text-3xl md:text-4xl mb-4">
-              Our Offices
+              Our Office
             </h2>
             <p className="text-white/70 max-w-2xl mx-auto">
-              With offices across Europe and North America, we&apos;re ready to serve clients globally.
+              Based in Ostend, Belgium, serving clients across Europe.
             </p>
           </div>
 
@@ -242,18 +225,20 @@ export default function ContactPage() {
         </Container>
       </Section>
 
-      {/* Map Placeholder */}
-      <Section className="!py-0">
-        <div className="relative h-[400px] bg-muted">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
-              <p className="text-muted-foreground">Interactive map integration</p>
-              <p className="text-sm text-muted-foreground/60">Connect with Google Maps or Mapbox</p>
-            </div>
-          </div>
-        </div>
-      </Section>
+      {/* Map */}
+<Section className="!py-0">
+  <div className="rounded-2xl overflow-hidden border border-border">
+    <iframe
+  title="pixiQ Office Location"
+  width="100%"
+  height="400"
+  style={{ border: 0 }}
+  loading="lazy"
+  allowFullScreen
+  src="https://www.google.com/maps?q=Torhoutsesteenweg%20649A,%208400%20Ostend,%20Belgium&z=15&output=embed"
+/>
+  </div>
+</Section>
     </>
   )
 }

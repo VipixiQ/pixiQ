@@ -11,7 +11,7 @@ import { CTASection } from "@/components/sections/cta-section"
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Meet the PixIQ team - strategists, technologists, and creative thinkers dedicated to creating digital experiences with measurable impact.",
+  description: "Meet the pixiQ team - strategists, technologists, and creative thinkers dedicated to creating digital experiences with measurable impact.",
 }
 
 /**
@@ -26,7 +26,7 @@ export default function AboutPage() {
       <PageHeader>
         <div className="max-w-4xl">
           <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
-            About PixIQ
+            About pixiQ
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight mb-6 text-balance">
             Creating digital experiences with{" "}
@@ -93,7 +93,7 @@ function StorySection() {
           </h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
-              PixIQ was founded with a clear vision: to bridge the gap between cutting-edge digital technology and measurable business outcomes. We saw organizations investing in digital displays and AV systems without any way to understand their impact.
+              pixiQ was founded with a clear vision: to bridge the gap between cutting-edge digital technology and measurable business outcomes. We saw organizations investing in digital displays and AV systems without any way to understand their impact.
             </p>
             <p>
               Today, we&apos;ve grown into a trusted partner for leading organizations across Europe. Our integrated approach - combining hardware, software, content, and data - has helped clients transform how they communicate, engage audiences, and measure success.
@@ -203,42 +203,33 @@ function ValuesSection() {
 function TeamSection() {
   const team = [
     {
-      name: "Sarah van der Berg",
+      name: "Guillaume Vandenberghe",
       role: "CEO & Co-founder",
       quote: "Technology should serve human experiences, not the other way around.",
     },
     {
-      name: "Mark Janssen",
-      role: "CTO & Co-founder",
+      name: "Jeroen De Cock",
+      role: "Co-founder",
       quote: "The best solutions are invisible - they just work.",
     },
     {
-      name: "Lisa de Vries",
-      role: "Head of Strategy",
+      name: "Arne Goudeseune",
+      role: "Commercial Manager",
       quote: "Data without insight is just noise. We turn it into action.",
     },
     {
-      name: "Tom Bakker",
-      role: "Head of Delivery",
+      name: "Virginie Verstegen",
+      role: "Operations Manager",
       quote: "Excellence is in the details. Every project, every time.",
     },
-    {
-      name: "Emma Smit",
-      role: "Creative Director",
-      quote: "Great design is felt before it's understood.",
-    },
-    {
-      name: "Jan de Groot",
-      role: "Head of Engineering",
-      quote: "Build it right, build it once, build it to last.",
-    },
+    
   ]
 
   return (
     <Section className="bg-muted/30">
       <SectionIntro
         eyebrow="Our Team"
-        title="The people behind PixIQ"
+        title="The people behind pixiQ"
         description="A diverse team of experts united by a shared passion for creating impact."
         align="center"
       />
@@ -284,13 +275,13 @@ function CultureSection() {
           </h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
-              At PixIQ, we believe the best work happens when talented people are trusted to do what they do best. We foster an environment of autonomy, continuous learning, and mutual respect.
+              At pixiQ, we believe the best work happens when talented people are trusted to do what they do best. We foster an environment of autonomy, continuous learning, and mutual respect.
             </p>
             <p>
               Our teams work closely with clients, becoming true extensions of their organizations. We invest in understanding their challenges, their culture, and their goals - because the best solutions come from deep partnership.
             </p>
             <p>
-              We celebrate wins together, learn from challenges together, and never stop pushing to improve. That&apos;s the PixIQ way.
+              We celebrate wins together, learn from challenges together, and never stop pushing to improve. That&apos;s the pixiQ way.
             </p>
           </div>
         </div>

@@ -13,8 +13,8 @@ interface JobPageProps {
 }
 
 async function getJobBySlug(slug: string) {
- const res = await fetch(
-  `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/jobs?filters[Slug][$eq]=${encodeURIComponent(slug)}` ,
+  const res = await fetch(
+    `http://localhost:1337/api/jobs?filters[Slug][$eq]=${encodeURIComponent(slug)}`,
     { cache: "no-store" }
   )
 
@@ -311,10 +311,10 @@ export default async function JobPage({ params }: JobPageProps) {
               <div className="text-center p-6">
                 <p className="text-sm text-muted-foreground mb-2">Questions?</p>
                 <a
-                  href="mailto:hello@pixiq.com"
+                  href="mailto:careers@pixiq.com"
                   className="text-sm font-medium text-pixiq-primary hover:underline"
                 >
-                  hello@pixiq.com
+                  careers@pixiq.com
                 </a>
               </div>
             </div>
@@ -338,7 +338,7 @@ export default async function JobPage({ params }: JobPageProps) {
                 department={relatedJob.department || relatedJob.Department || "General"}
                 type={relatedJob.employmentType}
                 excerpt={relatedJob.summary || relatedJob.intro || ""}
-                href={`/careers/${relatedJob.Slug}`}
+                href={`/test-jobs/${relatedJob.Slug}`}
               />
             ))}
           </div>

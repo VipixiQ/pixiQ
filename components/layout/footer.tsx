@@ -88,8 +88,10 @@ export function Footer() {
             </p>
             {/* Contact Info - Future CMS integration point */}
             <div className="space-y-2 text-sm text-white/60">
-              <p>info@pixiq.com</p>
-              <p>+31 (0)20 123 4567</p>
+              <a href="mailto:hello@pixiq.eu">
+  hello@pixiq.eu
+</a>
+              <p>+32 (0)50 96 16 16</p>
             </div>
           </div>
 
