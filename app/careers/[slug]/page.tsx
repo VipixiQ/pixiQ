@@ -311,10 +311,10 @@ export default async function JobPage({ params }: JobPageProps) {
               <div className="text-center p-6">
                 <p className="text-sm text-muted-foreground mb-2">Questions?</p>
                 <a
-                  href="mailto:hello@pixiq.com"
+                  href="mailto:hello@pixiq.eu"
                   className="text-sm font-medium text-pixiq-primary hover:underline"
                 >
-                  hello@pixiq.com
+                  hello@pixiq.eu
                 </a>
               </div>
             </div>

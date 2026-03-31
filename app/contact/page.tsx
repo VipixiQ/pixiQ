@@ -6,7 +6,7 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Ready to transform your space? Contact PixIQ for a consultation on digital signage, AV integration, and content intelligence solutions.',
+  description: 'Ready to transform your space? Contact pixiQ for a consultation on digital signage, AV integration, and content intelligence solutions.',
 }
 
 const offices = [
@@ -15,7 +15,7 @@ const offices = [
     country: 'Belgium',
     address: 'Torhoutsteenweg 649A',
     postalCode: '8400 Ostend',
-    phone: '+32 50 96 16 16',
+    phone: '+32 59 79 16 16',
     email: 'hello@pixiq.eu',
     isHeadquarters: true,
   },
@@ -116,7 +116,7 @@ export default function ContactPage() {
               {/* Quick Contact */}
               <div className="space-y-4 mb-12">
                 <a
-                  href="tel:+3250961616"
+                  href="tel:+3259791616"
                   className="flex items-center gap-4 p-4 bg-muted/50 rounded-lg hover:bg-muted transition-colors group"
                 >
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -124,7 +124,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Call us</p>
-                    <p className="font-semibold text-foreground">+32 50 96 16 16</p>
+                    <p className="font-semibold text-foreground">+32 59 79 16 16</p>
                   </div>
                 </a>
 

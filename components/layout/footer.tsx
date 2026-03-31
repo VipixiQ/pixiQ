@@ -91,7 +91,7 @@ export function Footer() {
               <a href="mailto:hello@pixiq.eu">
   hello@pixiq.eu
 </a>
-              <p>+32 (0)50 96 16 16</p>
+              <p>+32 (0) 59 79 16 16</p>
             </div>
           </div>
 

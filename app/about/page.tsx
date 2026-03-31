@@ -202,25 +202,12 @@ function ValuesSection() {
 
 function TeamSection() {
   const team = [
+     
+   
     {
-      name: "Guillaume Vandenberghe",
-      role: "CEO & Co-founder",
-      quote: "Technology should serve human experiences, not the other way around.",
-    },
-    {
-      name: "Jeroen De Cock",
-      role: "Co-founder",
-      quote: "The best solutions are invisible - they just work.",
-    },
-    {
-      name: "Arne Goudeseune",
-      role: "Commercial Manager",
-      quote: "Data without insight is just noise. We turn it into action.",
-    },
-    {
-      name: "Virginie Verstegen",
-      role: "Operations Manager",
-      quote: "Excellence is in the details. Every project, every time.",
+      name: "John Doe",
+      role: "Our future Colleague",
+      quote: "Join us and be part of our story.",
     },
     
   ]
@@ -230,7 +217,7 @@ function TeamSection() {
       <SectionIntro
         eyebrow="Our Team"
         title="The people behind pixiQ"
-        description="A diverse team of experts united by a shared passion for creating impact."
+        description="Experts united by a shared passion for creating impact."
         align="center"
       />
 

@@ -40,7 +40,7 @@ export default async function CareersPage() {
       {/* Hero */}
       <CareersHero />
 
-      {/* Why PixIQ */}
+      {/* Why pixiQ */}
       <WhyPixIQSection />
 
       {/* Culture & Values */}
@@ -71,12 +71,12 @@ function CareersHero() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl">
           <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
-            Careers at PixIQ
+            Careers at pixiQ
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-foreground leading-[1.1] tracking-tight mb-8 text-balance">
             Join the{" "}
             <span className="bg-pixiq-gradient bg-clip-text text-transparent">
-              PixIQ team
+              pixiQ team
             </span>
           </h1>
           <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-2xl mb-10 text-pretty">
@@ -105,14 +105,14 @@ function WhyPixIQSection() {
         {/* Content */}
         <div>
           <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
-            Why PixIQ
+            Why pixiQ
           </p>
           <h2 className="text-3xl lg:text-4xl font-heading text-foreground leading-tight mb-6 text-balance">
             More than a workplace
           </h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
-              At PixIQ, you won&apos;t just build digital experiences - you&apos;ll transform how organizations communicate with their audiences. Our work spans industries and continents, from retail giants to cultural institutions.
+              At pixiQ, you won&apos;t just build digital experiences - you&apos;ll transform how organizations communicate with their audiences. Our work spans industries and continents, from retail giants to cultural institutions.
             </p>
             <p>
               We&apos;re a team of strategists, technologists, and creative thinkers who believe technology should serve human experiences. We tackle complex challenges, push boundaries, and celebrate wins together.
@@ -266,7 +266,7 @@ function ContactSection() {
           Ready to start a conversation?
         </h2>
         <p className="text-lg text-white/70 mb-8 leading-relaxed">
-          Whether you have questions about a specific role or want to learn more about life at PixIQ, we&apos;d love to hear from you.
+          Whether you have questions about a specific role or want to learn more about life at pixiQ, we&apos;d love to hear from you.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button
@@ -285,8 +285,8 @@ function ContactSection() {
             variant="outline"
             className="border-white/30 text-white hover:bg-white/10 hover:text-white font-medium px-8"
           >
-            <a href="mailto:careers@pixiq.com">
-              Email careers@pixiq.com
+            <a href="mailto:hello@pixiq.eu">
+              Email hello@pixiq.eu
             </a>
           </Button>
         </div>
