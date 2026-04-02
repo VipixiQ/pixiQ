@@ -2,31 +2,22 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight, Users, Lightbulb, Target, Heart, Zap, Network } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Section, PageHeader } from "@/components/layout/section"
+import { Section } from "@/components/layout/section"
 import { SectionIntro } from "@/components/sections/section-intro"
 import { JobCard } from "@/components/cards/job-card"
 import { ValuePillar } from "@/components/blocks/value-blocks"
-
+import { fallbackJobs } from "@/lib/fallback-jobs"
 
 export const metadata: Metadata = {
   title: "Careers",
-  description: "Join the pixiQ team. Help us create digital experiences where creativity, technology and measurable impact come together.",
+  description:
+    "Join the pixiQ team. Help us create digital experiences where creativity, technology and measurable impact come together.",
 }
+
 async function getJobs() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/api/jobs`, {
-    cache: "no-store",
-  })
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch jobs")
-  }
-
-  const json = await res.json()
-
-  console.log("STRAPI JOBS:", json) // 👈 handig om te debuggen
-
-  return json.data || []
+  return fallbackJobs
 }
+
 /**
  * Careers Overview Page
  * IMPORTANT: This page is designed to be publishable early, before the full site
@@ -61,7 +52,6 @@ export default async function CareersPage() {
 function CareersHero() {
   return (
     <section className="relative pt-32 lg:pt-44 pb-20 lg:pb-32 overflow-hidden">
-      {/* Abstract Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-pixiq-secondary/8 rounded-full blur-3xl" />
         <div className="absolute top-1/3 -left-32 w-[400px] h-[400px] bg-pixiq-primary/6 rounded-full blur-3xl" />
@@ -102,7 +92,6 @@ function WhyPixIQSection() {
   return (
     <Section className="bg-muted/30">
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        {/* Content */}
         <div>
           <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
             Why pixiQ
@@ -123,7 +112,6 @@ function WhyPixIQSection() {
           </div>
         </div>
 
-        {/* Visual / Stats */}
         <div className="grid grid-cols-2 gap-6">
           <div className="p-6 rounded-xl bg-card border border-border text-center">
             <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">50+</div>
@@ -215,18 +203,17 @@ function OpenPositionsSection({ jobs }: { jobs: any[] }) {
       />
 
       <div className="space-y-4">
-      
-  {(jobs || []).map((job: any) => (
-  <JobCard
-    key={String(job.Slug || "")}
-    title={String(job.Title || "")}
-    location={String(job.Location || "")}
-    department={String(job.department || job.Department || "General")}
-    type={String(job.employmentType || "")}
-    excerpt={String(job.summary || job.intro || "")}
-    href={`/careers/${String(job.Slug || "")}`}
-  />
-))}
+        {(jobs || []).map((job: any) => (
+          <JobCard
+            key={String(job.slug || "")}
+            title={String(job.title || "")}
+            location={String(job.location || "")}
+            department={String(job.department || "General")}
+            type={String(job.type || "")}
+            excerpt={String(job.excerpt || "")}
+            href={`/careers/${String(job.slug || "")}`}
+          />
+        ))}
       </div>
     </Section>
   )

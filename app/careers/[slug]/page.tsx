@@ -5,38 +5,19 @@ import { ArrowRight, CheckCircle2, MapPin, Building2, Clock } from "lucide-react
 import { Button } from "@/components/ui/button"
 import { Section, PageHeader } from "@/components/layout/section"
 import { SectionIntro } from "@/components/sections/section-intro"
-import { JobMeta } from "@/components/cards/job-card"
-import { JobCard } from "@/components/cards/job-card"
+import { JobMeta, JobCard } from "@/components/cards/job-card"
+import { fallbackJobs } from "@/lib/fallback-jobs"
 
 interface JobPageProps {
   params: Promise<{ slug: string }>
 }
 
 async function getJobBySlug(slug: string) {
- const res = await fetch(
-  `${process.env.NEXT_PUBLIC_STRAPI_URL}/api/jobs?filters[Slug][$eq]=${encodeURIComponent(slug)}` ,
-    { cache: "no-store" }
-  )
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch job")
-  }
-
-  const data = await res.json()
-  return data.data?.[0] || null
+  return fallbackJobs.find((job) => job.slug === slug) || null
 }
 
 async function getJobs() {
-  const res = await fetch("http://localhost:1337/api/jobs", {
-    cache: "no-store",
-  })
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch jobs")
-  }
-
-  const data = await res.json()
-  return data.data || []
+  return fallbackJobs
 }
 
 export async function generateMetadata({ params }: JobPageProps): Promise<Metadata> {
@@ -48,50 +29,15 @@ export async function generateMetadata({ params }: JobPageProps): Promise<Metada
   }
 
   return {
-    title: `${job.Title} - Careers`,
-    description: job.summary || job.intro || job.Title,
+    title: `${job.title} - Careers`,
+    description: job.excerpt || job.aboutRole || job.title,
   }
 }
 
-function renderRichTextParagraphs(content: any[] | undefined) {
-  if (!Array.isArray(content)) return null
+function renderParagraph(text?: string) {
+  if (!text?.trim()) return null
 
-  return content.map((block, index) => {
-    if (block.type === "paragraph") {
-      const text = block.children?.map((child: any) => child.text || "").join("") ?? ""
-      if (!text.trim()) return null
-
-      return (
-        <p key={index} className="text-muted-foreground leading-relaxed mb-4">
-          {text}
-        </p>
-      )
-    }
-
-    return null
-  })
-}
-
-function richTextToList(content: any[] | undefined): string[] {
-  if (!Array.isArray(content)) return []
-
-  const items: string[] = []
-
-  for (const block of content) {
-    if (block.type === "list" && Array.isArray(block.children)) {
-      for (const item of block.children) {
-        const text = item.children?.map((child: any) => child.text || "").join("") ?? ""
-        if (text.trim()) items.push(text)
-      }
-    }
-
-    if (block.type === "paragraph") {
-      const text = block.children?.map((child: any) => child.text || "").join("") ?? ""
-      if (text.trim()) items.push(text)
-    }
-  }
-
-  return items
+  return <p className="text-muted-foreground leading-relaxed mb-4">{text}</p>
 }
 
 export default async function JobPage({ params }: JobPageProps) {
@@ -104,20 +50,19 @@ export default async function JobPage({ params }: JobPageProps) {
 
   const allJobs = await getJobs()
 
-  const department = job.department || job.Department || "General"
+  const department = job.department || "General"
 
   const relatedJobs = allJobs
-    .filter((j: any) => (j.department || j.Department) === department && j.Slug !== job.Slug)
+    .filter((j) => j.department === department && j.slug !== job.slug)
     .slice(0, 2)
 
-  const responsibilities = richTextToList(job.whatYoullDo)
-  const requirements = richTextToList(job.whatWereLookingFor)
-  const niceToHaves = richTextToList(job.niceToHave)
-  const whatWeOffer = richTextToList(job.whatWeOffer)
+  const responsibilities = job.responsibilities || []
+  const requirements = job.profile || []
+  const niceToHaves = job.niceToHave || []
+  const whatWeOffer = job.offer || []
 
   return (
     <>
-      {/* Hero */}
       <PageHeader className="pb-8 lg:pb-12">
         <div className="max-w-4xl">
           <Link
@@ -129,17 +74,17 @@ export default async function JobPage({ params }: JobPageProps) {
           </Link>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight mb-6">
-            {job.Title}
+            {job.title}
           </h1>
 
           <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-            {job.intro || job.summary}
+            {job.excerpt}
           </p>
 
           <JobMeta
-            location={job.Location}
+            location={job.location}
             department={department}
-            type={job.employmentType}
+            type={job.type}
             className="mb-8"
           />
 
@@ -148,7 +93,7 @@ export default async function JobPage({ params }: JobPageProps) {
             size="lg"
             className="bg-pixiq-gradient hover:opacity-90 text-white font-medium px-8"
           >
-            <a href={job.applyUrl || "/contact"}>
+            <a href="/contact">
               Apply for this position
               <ArrowRight className="ml-2 h-4 w-4" />
             </a>
@@ -156,22 +101,18 @@ export default async function JobPage({ params }: JobPageProps) {
         </div>
       </PageHeader>
 
-      {/* Content Grid with Sticky Apply */}
       <Section className="pt-0">
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
-          {/* Main Content */}
           <div className="lg:col-span-2 space-y-12">
-            {/* About the Role */}
             {job.aboutRole && (
               <div>
                 <h2 className="text-2xl font-heading text-foreground mb-4">
                   About the role
                 </h2>
-                <div>{renderRichTextParagraphs(job.aboutRole)}</div>
+                <div>{renderParagraph(job.aboutRole)}</div>
               </div>
             )}
 
-            {/* Responsibilities */}
             {responsibilities.length > 0 && (
               <div>
                 <h2 className="text-2xl font-heading text-foreground mb-4">
@@ -188,7 +129,6 @@ export default async function JobPage({ params }: JobPageProps) {
               </div>
             )}
 
-            {/* Requirements */}
             {requirements.length > 0 && (
               <div>
                 <h2 className="text-2xl font-heading text-foreground mb-4">
@@ -205,7 +145,6 @@ export default async function JobPage({ params }: JobPageProps) {
               </div>
             )}
 
-            {/* Nice to Haves */}
             {niceToHaves.length > 0 && (
               <div>
                 <h2 className="text-2xl font-heading text-foreground mb-4">
@@ -222,7 +161,6 @@ export default async function JobPage({ params }: JobPageProps) {
               </div>
             )}
 
-            {/* What We Offer */}
             {whatWeOffer.length > 0 && (
               <div>
                 <h2 className="text-2xl font-heading text-foreground mb-4">
@@ -238,24 +176,10 @@ export default async function JobPage({ params }: JobPageProps) {
                 </ul>
               </div>
             )}
-
-            {/* Team Note */}
-            {job.teamNote && (
-              <div className="p-6 rounded-xl bg-muted/50 border border-border">
-                <h3 className="text-lg font-heading text-foreground mb-3">
-                  About the team
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {job.teamNote}
-                </p>
-              </div>
-            )}
           </div>
 
-          {/* Sticky Sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-28 space-y-6">
-              {/* Apply Card */}
               <div className="p-6 rounded-xl bg-card border border-border">
                 <h3 className="text-lg font-heading text-foreground mb-4">
                   Interested?
@@ -267,21 +191,20 @@ export default async function JobPage({ params }: JobPageProps) {
                   asChild
                   className="w-full bg-pixiq-gradient hover:opacity-90 text-white font-medium"
                 >
-                  <a href={job.applyUrl || "/contact"}>
+                  <a href="/contact">
                     Apply now
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
               </div>
 
-              {/* Quick Info */}
               <div className="p-6 rounded-xl bg-muted/50 border border-border space-y-4">
-                {job.Location && (
+                {job.location && (
                   <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-pixiq-secondary flex-shrink-0" />
                     <div>
                       <div className="text-sm text-muted-foreground">Location</div>
-                      <div className="font-medium text-foreground">{job.Location}</div>
+                      <div className="font-medium text-foreground">{job.location}</div>
                     </div>
                   </div>
                 )}
@@ -296,18 +219,17 @@ export default async function JobPage({ params }: JobPageProps) {
                   </div>
                 )}
 
-                {job.employmentType && (
+                {job.type && (
                   <div className="flex items-start gap-3">
                     <Clock className="h-5 w-5 text-pixiq-secondary flex-shrink-0" />
                     <div>
                       <div className="text-sm text-muted-foreground">Type</div>
-                      <div className="font-medium text-foreground">{job.employmentType}</div>
+                      <div className="font-medium text-foreground">{job.type}</div>
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Contact */}
               <div className="text-center p-6">
                 <p className="text-sm text-muted-foreground mb-2">Questions?</p>
                 <a
@@ -322,7 +244,6 @@ export default async function JobPage({ params }: JobPageProps) {
         </div>
       </Section>
 
-      {/* Related Jobs */}
       {relatedJobs.length > 0 && (
         <Section className="bg-muted/30">
           <SectionIntro
@@ -330,15 +251,15 @@ export default async function JobPage({ params }: JobPageProps) {
             title="Other roles you might like"
           />
           <div className="space-y-4">
-            {relatedJobs.map((relatedJob: any) => (
+            {relatedJobs.map((relatedJob) => (
               <JobCard
-                key={relatedJob.Slug}
-                title={relatedJob.Title}
-                location={relatedJob.Location}
-                department={relatedJob.department || relatedJob.Department || "General"}
-                type={relatedJob.employmentType}
-                excerpt={relatedJob.summary || relatedJob.intro || ""}
-                href={`/careers/${relatedJob.Slug}`}
+                key={relatedJob.slug}
+                title={relatedJob.title}
+                location={relatedJob.location}
+                department={relatedJob.department || "General"}
+                type={relatedJob.type}
+                excerpt={relatedJob.excerpt || ""}
+                href={`/careers/${relatedJob.slug}`}
               />
             ))}
           </div>
