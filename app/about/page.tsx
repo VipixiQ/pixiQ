@@ -287,8 +287,8 @@ function CultureSection() {
 
 function StatsSection() {
   const stats = [
-    { value: "12+", label: "Years in Business" },
-    { value: "50+", label: "Team Members" },
+    { value: "9+", label: "Years in Business" },
+    { value: "10", label: "Local Heros" },
     { value: "150+", label: "Projects Delivered" },
   ]
 
