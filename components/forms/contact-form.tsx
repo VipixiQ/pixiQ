@@ -18,32 +18,66 @@ interface ContactFormProps {
   className?: string
 }
 
-/**
- * Contact Form Component
- * Main conversion form with fields for name, company, email, sector, language, message
- * Future: Connect to CRM (HubSpot), add file upload, validation, reCAPTCHA
- */
 export function ContactForm({ className }: ContactFormProps) {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState("")
+  const [sector, setSector] = useState("")
+  const [language, setLanguage] = useState("en")
+
+  const endpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Simulate form submission - Future: Connect to API/CRM
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    setError("")
+
+    if (!endpoint) {
+      setError("Form endpoint is missing. Check your env.local file.")
+      setIsSubmitting(false)
+      return
+    }
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    formData.set("sector", sector)
+    formData.set("language", language)
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setIsSubmitted(true)
+        form.reset()
+        setSector("")
+        setLanguage("en")
+      } else {
+        setError(data?.errors?.[0]?.message || "Something went wrong. Please try again.")
+      }
+    } catch {
+      setError("Network error. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   if (isSubmitted) {
     return (
-      <div className={cn(
-        "p-8 lg:p-12 rounded-xl border border-border bg-card text-center",
-        className
-      )}>
+      <div
+        className={cn(
+          "p-8 lg:p-12 rounded-xl border border-border bg-card text-center",
+          className
+        )}
+      >
         <CheckCircle2 className="h-16 w-16 text-pixiq-secondary mx-auto mb-6" />
         <h3 className="text-2xl font-heading text-foreground mb-3">
           Thank you for reaching out
@@ -56,7 +90,7 @@ export function ContactForm({ className }: ContactFormProps) {
   }
 
   return (
-    <form 
+    <form
       onSubmit={handleSubmit}
       className={cn(
         "p-6 lg:p-10 rounded-xl border border-border bg-card",
@@ -64,7 +98,6 @@ export function ContactForm({ className }: ContactFormProps) {
       )}
     >
       <div className="grid gap-6">
-        {/* Name & Company */}
         <div className="grid sm:grid-cols-2 gap-6">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
@@ -79,6 +112,7 @@ export function ContactForm({ className }: ContactFormProps) {
               className="h-12"
             />
           </div>
+
           <div>
             <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
               Company <span className="text-destructive">*</span>
@@ -94,7 +128,6 @@ export function ContactForm({ className }: ContactFormProps) {
           </div>
         </div>
 
-        {/* Email */}
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
             Email <span className="text-destructive">*</span>
@@ -109,13 +142,12 @@ export function ContactForm({ className }: ContactFormProps) {
           />
         </div>
 
-        {/* Sector & Language */}
         <div className="grid sm:grid-cols-2 gap-6">
           <div>
             <label htmlFor="sector" className="block text-sm font-medium text-foreground mb-2">
               Sector
             </label>
-            <Select name="sector">
+            <Select value={sector} onValueChange={setSector}>
               <SelectTrigger className="h-12">
                 <SelectValue placeholder="Select sector" />
               </SelectTrigger>
@@ -130,11 +162,12 @@ export function ContactForm({ className }: ContactFormProps) {
               </SelectContent>
             </Select>
           </div>
+
           <div>
             <label htmlFor="language" className="block text-sm font-medium text-foreground mb-2">
               Preferred language
             </label>
-            <Select name="language" defaultValue="en">
+            <Select value={language} onValueChange={setLanguage}>
               <SelectTrigger className="h-12">
                 <SelectValue placeholder="Select language" />
               </SelectTrigger>
@@ -147,7 +180,6 @@ export function ContactForm({ className }: ContactFormProps) {
           </div>
         </div>
 
-        {/* Message */}
         <div>
           <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
             Message <span className="text-destructive">*</span>
@@ -162,7 +194,8 @@ export function ContactForm({ className }: ContactFormProps) {
           />
         </div>
 
-        {/* Submit */}
+        {error && <p className="text-sm text-destructive">{error}</p>}
+
         <Button
           type="submit"
           size="lg"
