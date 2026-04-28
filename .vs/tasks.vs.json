@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-Virginie Verstegen Allsee EU - Website pixiQ",
+      "appliesTo": "/",
+      "type": "launch"
+    }
+  ]
+}

@@ -152,55 +152,55 @@ export const solutionsNl: Solution[] = [
     relatedCases: [],
   },
   {
-    slug: "consultancy",
-    title: "Consultancy & Strategy",
-    subtitle: "Strategisch advies voor digitale investeringen",
-    description:
-      "Strategisch advies om uw digitale investeringen te optimaliseren en meetbare bedrijfsresultaten te maximaliseren.",
-    heroDescription:
-      "Van technologieroadmaps tot ROI-analyses: wij helpen u navigeren in het complexe landschap van digitale belevingstechnologie.",
-    pillars: [
-      {
-        title: "Technology Assessment",
-        description:
-          "Grondige analyse van uw huidige technologielandschap en identificatie van optimalisatiemogelijkheden.",
-      },
-      {
-        title: "Strategieontwikkeling",
-        description:
-          "Roadmaps op maat, afgestemd op uw bedrijfsdoelstellingen, budget en timing voor digitale transformatie.",
-      },
-      {
-        title: "ROI-analyse",
-        description:
-          "Onderbouwde businesscases en financiële modellen om digitale investeringen te verantwoorden en meetbaar te maken.",
-      },
-      {
-        title: "Vendor Management",
-        description:
-          "Objectieve begeleiding bij technologiekeuze, leveranciersselectie en aankooptrajecten.",
-      },
-    ],
-    strategicContent: {
-      title: "Expertise voor complexe beslissingen",
+  slug: "consultancy",
+  title: "Consultancy & Strategie",
+  subtitle: "Strategisch advies voor digitale investeringen",
+  description:
+    "Strategisch advies om uw digitale investeringen te optimaliseren en meetbare bedrijfsresultaten te maximaliseren.",
+  heroDescription:
+    "Van technologieroadmaps tot ROI-analyses: wij helpen u navigeren in het complexe landschap van digitale belevingstechnologie.",
+  pillars: [
+    {
+      title: "Technologieanalyse",
       description:
-        "Het landschap van digitale belevingstechnologie evolueert snel. Onze consultants helpen u de juiste keuzes maken met strategisch en objectief advies.",
-      points: [
-        "Audits van digitale belevingen",
-        "Ontwikkeling van technologieroadmaps",
-        "Businesscase-ontwikkeling",
-        "Leveranciersevaluatie en selectie",
-        "Begeleiding bij implementatie",
-        "Prestatie-optimalisatie",
-      ],
+        "Grondige analyse van uw huidige technologielandschap en identificatie van optimalisatiemogelijkheden.",
     },
-    kpis: [
-      { value: "100+", label: "Consultancytrajecten", description: "Over verschillende sectoren" },
-      { value: "€50M+", label: "Klantbesparingen", description: "Door strategische begeleiding" },
-      { value: "15+", label: "Specialisten", description: "Binnen ons team" },
+    {
+      title: "Strategieontwikkeling",
+      description:
+        "Roadmaps op maat, afgestemd op uw bedrijfsdoelstellingen, budget en timing voor digitale transformatie.",
+    },
+    {
+      title: "ROI-analyse",
+      description:
+        "Onderbouwde businesscases en financiële modellen om digitale investeringen te verantwoorden en meetbaar te maken.",
+    },
+    {
+      title: "Leveranciersbeheer",
+      description:
+        "Objectieve begeleiding bij technologiekeuze, leveranciersselectie en aankooptrajecten.",
+    },
+  ],
+  strategicContent: {
+    title: "Expertise voor complexe beslissingen",
+    description:
+      "Het landschap van digitale belevingstechnologie evolueert snel. Onze consultants helpen u de juiste keuzes maken met strategisch en objectief advies.",
+    points: [
+      "Audits van digitale belevingen",
+      "Ontwikkeling van technologieroadmaps",
+      "Businesscase-ontwikkeling",
+      "Leveranciersevaluatie en selectie",
+      "Begeleiding bij implementatie",
+      "Prestatie-optimalisatie",
     ],
-    relatedCases: [],
   },
+  kpis: [
+    { value: "100+", label: "Consultancytrajecten", description: "Over verschillende sectoren" },
+    { value: "€50M+", label: "Klantbesparingen", description: "Door strategische begeleiding" },
+    { value: "9+", label: "Specialisten", description: "Binnen ons team" },
+  ],
+  relatedCases: [],
+}
 ]
 
 export function getSolutionNlBySlug(slug: string): Solution | undefined {

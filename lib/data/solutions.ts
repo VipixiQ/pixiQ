@@ -254,7 +254,7 @@ export const solutions: Solution[] = [
     kpis: [
       { value: "100+", label: "Consulting Engagements", description: "Across industries" },
       { value: "€50M+", label: "Client Savings", description: "Through strategic guidance" },
-      { value: "15+", label: "Industry Specialists", description: "On our consulting team" },
+      { value: "10+", label: "Industry Specialists", description: "On our consulting team" },
     ],
     relatedCases: [
       {

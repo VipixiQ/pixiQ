@@ -161,9 +161,9 @@ function MethodologySection() {
 
 function TrustSection() {
   const stats = [
-    { value: "150+", label: "Projects Delivered" },
+    { value: "75+", label: "Projects Delivered" },
     { value: "98%", label: "Client Satisfaction" },
-    { value: "12+", label: "Years Experience" },
+    { value: "9+", label: "Years Experience" },
   ]
 
   return (

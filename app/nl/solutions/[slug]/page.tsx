@@ -8,176 +8,41 @@ import { SectionIntro } from "@/components/sections/section-intro"
 import { CaseCard } from "@/components/cards/case-card"
 import { StatsBlock } from "@/components/blocks/kpi-block"
 import { CTASection } from "@/components/sections/cta-section"
-import { getAllSolutionSlugs, getSolutionBySlug } from "@/lib/data/solutions"
+import {
+  getAllSolutionNlSlugs,
+  getSolutionNlBySlug,
+} from "@/lib/data/solutions-nl"
 
 interface SolutionPageProps {
   params: Promise<{ slug: string }>
 }
 
-const nlSolutions: Record<string, any> = {
-  "digital-signage-as-a-service": {
-    title: "Digital Signage as a Service",
-    heroDescription:
-      "Van losse displays tot volledige netwerken: wij leveren turnkey digital signage oplossingen die uw communicatie versterken en uw doelgroep activeren.",
-    pillars: [
-      {
-        title: "Hardware & Infrastructuur",
-        description:
-          "Professionele displays, mediaspelers en montagematerialen, zorgvuldig geselecteerd en geconfigureerd voor uw omgeving en toepassing.",
-      },
-      {
-        title: "Content Management Platform",
-        description:
-          "Gebruiksvriendelijk cloudgebaseerd CMS met planning, targeting en realtime updates. Beheer content op alle locaties vanuit één dashboard.",
-      },
-      {
-        title: "Analytics & Rapportering",
-        description:
-          "Duidelijke inzichten in engagement, contentprestaties en ROI. Neem datagedreven beslissingen om uw communicatie te optimaliseren.",
-      },
-      {
-        title: "Managed Services",
-        description:
-          "Proactieve monitoring, onderhoud en support inbegrepen. Wij beheren de technologie zodat u zich kunt focussen op uw boodschap.",
-      },
-    ],
-    strategicContent: {
-      title: "Een strategische aanpak voor visuele communicatie",
-      description:
-        "Digital signage is meer dan displays aan de muur. Het is een krachtig communicatiekanaal dat, wanneer strategisch ingezet, meetbare bedrijfsresultaten oplevert.",
-      points: [
-        "Vergroot merkbekendheid en herkenning",
-        "Stimuleer verkoop en promotionele impact",
-        "Verbeter klantbeleving en engagement",
-        "Verkort de ervaren wachttijd",
-        "Versterk interne communicatie",
-        "Creëer meeslepende merkervaringen",
-      ],
-    },
-  },
-
-  experience: {
-    title: "AV & Experience Integration",
-    heroDescription:
-      "Wij ontwerpen en realiseren audiovisuele belevingen die veranderen hoe mensen ruimtes ervaren en gebruiken, van bedrijfsomgevingen tot publieke locaties.",
-    pillars: [
-      {
-        title: "Experience Design",
-        description:
-          "Mensgericht ontwerp met aandacht voor akoestiek, zichtlijnen, verlichting en gebruikersstromen voor een sterke totaalbeleving.",
-      },
-      {
-        title: "AV Systeemintegratie",
-        description:
-          "Vakkundige integratie van displays, audiosystemen, verlichting en sturing in gebruiksvriendelijke totaaloplossingen.",
-      },
-      {
-        title: "Interactieve Technologieën",
-        description:
-          "Touchdisplays, gesture control, AR/VR-belevingen en sensorgestuurde interacties die doelgroepen activeren.",
-      },
-      {
-        title: "Controle & Automatisatie",
-        description:
-          "Slimme automatisatie die het beheer vereenvoudigt en zorgt voor consistente ervaringen op elk contactpunt.",
-      },
-    ],
-    strategicContent: {
-      title: "Onvergetelijke ervaringen creëren met technologie",
-      description:
-        "De juiste audiovisuele beleving verandert hoe mensen uw merk ervaren, met uw content interageren en hun bezoek herinneren.",
-      points: [
-        "Meeslepende merkbelevingen",
-        "Interactieve klantervaringen",
-        "Samenwerkende vergaderruimtes",
-        "Oplossingen voor events en presentaties",
-        "Wayfinding- en informatiesystemen",
-        "Belevingsgerichte retailinstallaties",
-      ],
-    },
-  },
-
-  data: {
-    title: "Content & Data Intelligence",
-    heroDescription:
-      "Ons intelligence platform combineert publieksanalyse, contentoptimalisatie en realtime rapportering om de impact van elke boodschap te maximaliseren.",
-    pillars: [
-      {
-        title: "Audience Analytics",
-        description:
-          "Begrijp wie met uw content interageert, wanneer en hoe. Anonieme publieksmetingen leveren bruikbare inzichten op.",
-      },
-      {
-        title: "Content Optimalisatie",
-        description:
-          "Datagedreven contentstrategieën die inspelen op doelgroepgedrag, tijdstip, weer en andere contextuele factoren.",
-      },
-      {
-        title: "Realtime Rapportering",
-        description:
-          "Live dashboards en geautomatiseerde rapporten die prestaties en ROI opvolgen over alle kanalen en locaties.",
-      },
-      {
-        title: "Integratie & API",
-        description:
-          "Koppel uw contentsystemen met bestaande databronnen, CRM-platformen en business intelligence tools.",
-      },
-    ],
-    strategicContent: {
-      title: "Intelligence die resultaten oplevert",
-      description:
-        "Content zonder data is giswerk. Ons intelligence platform zorgt ervoor dat elke boodschap geoptimaliseerd wordt voor maximale impact.",
-      points: [
-        "Analyse van doelgroepgedrag",
-        "Opvolging van contentprestaties",
-        "A/B-testing en optimalisatie",
-        "Voorspellende contentplanning",
-        "ROI-meting en attributie",
-        "Cross-channel analytics",
-      ],
-    },
-  },
-
-  consultancy: {
-    title: "Consultancy & Strategy",
-    heroDescription:
-      "Van technologieroadmaps tot ROI-analyses: wij helpen u navigeren in het complexe landschap van digitale belevingstechnologie.",
-  },
-}
-
 export async function generateStaticParams() {
-  return getAllSolutionSlugs().map((slug) => ({ slug }))
+  return getAllSolutionNlSlugs().map((slug) => ({ slug }))
 }
 
-export async function generateMetadata({ params }: SolutionPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: SolutionPageProps): Promise<Metadata> {
   const { slug } = await params
-  const baseSolution = getSolutionBySlug(slug)
-  const nlSolution = nlSolutions[slug]
+  const solution = getSolutionNlBySlug(slug)
 
-  if (!baseSolution) {
+  if (!solution) {
     return { title: "Oplossing niet gevonden" }
   }
 
   return {
-    title: nlSolution?.title || baseSolution.title,
-    description: nlSolution?.heroDescription || baseSolution.description,
+    title: solution.title,
+    description: solution.description,
   }
 }
 
 export default async function SolutionPage({ params }: SolutionPageProps) {
   const { slug } = await params
-  const baseSolution = getSolutionBySlug(slug)
-  const nlSolution = nlSolutions[slug]
+  const solution = getSolutionNlBySlug(slug)
 
-  if (!baseSolution) {
+  if (!solution) {
     notFound()
-  }
-
-  const solution = {
-    ...baseSolution,
-    ...nlSolution,
-    pillars: nlSolution?.pillars || baseSolution.pillars,
-    strategicContent: nlSolution?.strategicContent || baseSolution.strategicContent,
   }
 
   return (
@@ -201,23 +66,14 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <Button
-              asChild
-              size="lg"
-              className="bg-pixiq-gradient hover:opacity-90 text-white font-medium px-8"
-            >
+            <Button asChild size="lg" className="bg-pixiq-gradient hover:opacity-90 text-white font-medium px-8">
               <Link href="/nl/contact">
                 Vraag advies aan
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
 
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="border-pixiq-primary/30 text-pixiq-primary hover:bg-pixiq-primary/5 font-medium px-8"
-            >
+            <Button asChild size="lg" variant="outline" className="border-pixiq-primary/30 text-pixiq-primary hover:bg-pixiq-primary/5 font-medium px-8">
               <Link href="/nl/cases">Bekijk cases</Link>
             </Button>
           </div>
@@ -225,11 +81,8 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
       </PageHeader>
 
       <PillarsSection pillars={solution.pillars} />
-
       <StrategicSection content={solution.strategicContent} />
-
       <KPISection kpis={solution.kpis} />
-
       <RelatedCasesSection cases={solution.relatedCases} />
 
       <CTASection
@@ -243,7 +96,11 @@ export default async function SolutionPage({ params }: SolutionPageProps) {
   )
 }
 
-function PillarsSection({ pillars }: { pillars: { title: string; description: string }[] }) {
+function PillarsSection({
+  pillars,
+}: {
+  pillars: { title: string; description: string }[]
+}) {
   return (
     <Section className="bg-muted/30">
       <SectionIntro
@@ -288,10 +145,7 @@ function StrategicSection({
             {content.description}
           </p>
 
-          <Button
-            asChild
-            className="bg-pixiq-gradient hover:opacity-90 text-white font-medium"
-          >
+          <Button asChild className="bg-pixiq-gradient hover:opacity-90 text-white font-medium">
             <Link href="/nl/contact">
               Bespreek uw noden
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -312,7 +166,11 @@ function StrategicSection({
   )
 }
 
-function KPISection({ kpis }: { kpis: { value: string; label: string; description?: string }[] }) {
+function KPISection({
+  kpis,
+}: {
+  kpis: { value: string; label: string; description?: string }[]
+}) {
   return (
     <Section className="bg-pixiq-black text-white">
       <div className="text-center mb-12">
@@ -340,7 +198,7 @@ function RelatedCasesSection({
     industry?: string
   }[]
 }) {
-  if (cases.length === 0) return null
+  if (!cases || cases.length === 0) return null
 
   return (
     <Section>
@@ -356,7 +214,7 @@ function RelatedCasesSection({
             key={index}
             title={caseItem.title}
             excerpt={caseItem.excerpt}
-            href={caseItem.href.replace("/cases", "/nl/cases")}
+            href={caseItem.href}
             kpiValue={caseItem.kpiValue}
             kpiLabel={caseItem.kpiLabel}
             industry={caseItem.industry}
