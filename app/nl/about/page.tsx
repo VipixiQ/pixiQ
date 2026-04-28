@@ -10,60 +10,43 @@ import { StatsBlockBordered } from "@/components/blocks/kpi-block"
 import { CTASection } from "@/components/sections/cta-section"
 
 export const metadata: Metadata = {
-  title: "About",
-  description: "Meet the pixiQ team - strategists, technologists, and creative thinkers dedicated to creating digital experiences with measurable impact.",
+  title: "Over pixiQ",
+  description:
+    "Maak kennis met pixiQ: strategen, technologen en creatieve denkers die digitale belevingen creëren met meetbare impact.",
 }
 
-/**
- * About Page
- * Company story, mission, vision, values, team
- * Future: Add CMS integration for team members, timeline
- */
 export default function AboutPage() {
   return (
     <>
-      {/* Hero / Intro */}
       <PageHeader>
         <div className="max-w-4xl">
           <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
-            About pixiQ
+            Over pixiQ
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight mb-6 text-balance">
-            Creating digital experiences with{" "}
+            Wij creëren digitale belevingen met{" "}
             <span className="bg-pixiq-gradient bg-clip-text text-transparent">
-              measurable impact.
+              meetbare impact.
             </span>
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
-            We&apos;re a team of strategists, technologists, and creative thinkers united by a single mission: helping organizations create digital experiences that deliver real, quantifiable results.
+            Wij zijn een team van strategen, technologen en creatieve denkers, verenigd door één missie: organisaties helpen digitale belevingen te creëren die echte, meetbare resultaten opleveren.
           </p>
         </div>
       </PageHeader>
 
-      {/* Story / Evolution */}
       <StorySection />
-
-      {/* Mission & Vision */}
       <MissionVisionSection />
-
-      {/* Core Values */}
       <ValuesSection />
-
-      {/* Team */}
       <TeamSection />
-
-      {/* Way of Working */}
       <CultureSection />
-
-      {/* Stats */}
       <StatsSection />
 
-      {/* CTA */}
       <CTASection
-        headline="Ready to work together?"
-        description="Whether you're looking to start a project or join our team, we'd love to hear from you."
-        primaryCTA={{ text: "Plan a meeting", href: "/contact" }}
-        secondaryCTA={{ text: "Join our team", href: "/careers" }}
+        headline="Klaar om samen te werken?"
+        description="Of u nu een project wilt opstarten of ons team wilt versterken, we horen graag van u."
+        primaryCTA={{ text: "Plan een meeting", href: "/nl/contact" }}
+        secondaryCTA={{ text: "Versterk ons team", href: "/nl/careers" }}
         variant="gradient"
       />
     </>
@@ -74,7 +57,6 @@ function StorySection() {
   return (
     <Section>
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        {/* Visual placeholder */}
         <div className="relative aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden bg-muted order-2 lg:order-1">
           <div className="absolute inset-0 bg-pixiq-gradient opacity-10" />
           <div className="absolute inset-8 rounded-xl border border-pixiq-primary/10" />
@@ -83,23 +65,22 @@ function StorySection() {
           </div>
         </div>
 
-        {/* Content */}
         <div className="order-1 lg:order-2">
           <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
-            Our Story
+            Ons verhaal
           </p>
           <h2 className="text-3xl lg:text-4xl font-heading text-foreground leading-tight mb-6 text-balance">
-            From vision to trusted partner
+            Van visie tot betrouwbare partner
           </h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
-              pixiQ was founded with a clear vision: to bridge the gap between cutting-edge digital technology and measurable business outcomes. We saw organizations investing in digital displays and AV systems without any way to understand their impact.
+              pixiQ werd opgericht met een duidelijke visie: de kloof overbruggen tussen vooruitstrevende digitale technologie en meetbare bedrijfsresultaten.
             </p>
             <p>
-              Today, we&apos;ve grown into a trusted partner for leading organizations across Europe. Our integrated approach - combining hardware, software, content, and data - has helped clients transform how they communicate, engage audiences, and measure success.
+              Vandaag zijn we uitgegroeid tot een betrouwbare partner voor toonaangevende organisaties in Europa. Onze geïntegreerde aanpak helpt klanten hun communicatie te versterken, doelgroepen te engageren en succes meetbaar te maken.
             </p>
             <p>
-              But we&apos;re just getting started. As technology evolves, so do we - always with the same focus on creating experiences that deliver real, measurable impact.
+              Maar we staan nog maar aan het begin. Terwijl technologie evolueert, blijven wij focussen op het creëren van belevingen met echte, meetbare impact.
             </p>
           </div>
         </div>
@@ -112,29 +93,27 @@ function MissionVisionSection() {
   return (
     <Section className="bg-pixiq-black text-white">
       <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
-        {/* Mission */}
         <div className="text-center md:text-left">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-white/10 text-white mb-6">
             <Target className="h-7 w-7" />
           </div>
           <h2 className="text-2xl lg:text-3xl font-heading text-white mb-4">
-            Our Mission
+            Onze missie
           </h2>
           <p className="text-lg text-white/70 leading-relaxed">
-            To help organizations create digital experiences that engage audiences and deliver measurable business outcomes, through an integrated approach that connects hardware, software, content, and data.
+            We helpen organisaties met het creëren van digitale belevingen die doelgroepen engageren en meetbare bedrijfsresultaten opleveren. Via een geïntegreerde aanpak verbinden we hardware, software, content en data.
           </p>
         </div>
 
-        {/* Vision */}
         <div className="text-center md:text-left">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-white/10 text-white mb-6">
             <Eye className="h-7 w-7" />
           </div>
           <h2 className="text-2xl lg:text-3xl font-heading text-white mb-4">
-            Our Vision
+            Onze visie
           </h2>
           <p className="text-lg text-white/70 leading-relaxed">
-            A world where every digital experience is purposeful, every interaction is meaningful, and every investment is measurable. We envision digital ecosystems that seamlessly connect people, spaces, and data.
+            Een wereld waarin elke digitale beleving doelgericht is, elke interactie waardevol en elke investering meetbaar. Wij geloven in digitale ecosystemen die mensen, ruimtes en data naadloos met elkaar verbinden.
           </p>
         </div>
       </div>
@@ -146,42 +125,48 @@ function ValuesSection() {
   const values = [
     {
       icon: Heart,
-      title: "Trust",
-      description: "We build lasting relationships through transparency, reliability, and delivering on our commitments.",
+      title: "Vertrouwen",
+      description:
+        "Wij bouwen duurzame relaties op basis van transparantie, betrouwbaarheid en het nakomen van onze engagementen.",
     },
     {
       icon: Lightbulb,
-      title: "Knowledge-driven",
-      description: "We combine deep expertise with continuous learning to stay ahead of industry evolution.",
+      title: "Kennisgedreven",
+      description:
+        "Wij combineren diepgaande expertise met continue ontwikkeling om voorop te blijven lopen in een snel evoluerende markt.",
     },
     {
       icon: Target,
-      title: "Goal-oriented",
-      description: "Every decision is guided by clear objectives and measurable outcomes for our clients.",
+      title: "Resultaatgericht",
+      description:
+        "Elke beslissing wordt gestuurd door duidelijke doelstellingen en meetbare resultaten voor onze klanten.",
     },
     {
       icon: Users,
-      title: "Collaboration",
-      description: "We work as true partners with our clients, integrating seamlessly with their teams.",
+      title: "Samenwerking",
+      description:
+        "Wij werken als echte partners samen met onze klanten en integreren naadloos met hun teams.",
     },
     {
       icon: Shield,
-      title: "Integrity",
-      description: "We provide honest guidance, even when it means challenging assumptions or recommending alternatives.",
+      title: "Integriteit",
+      description:
+        "Wij geven eerlijk en doordacht advies, ook wanneer dat betekent dat we aannames uitdagen of alternatieven voorstellen.",
     },
     {
       icon: Eye,
-      title: "Innovation",
-      description: "We embrace new technologies and approaches that create value, not just novelty.",
+      title: "Innovatie",
+      description:
+        "Wij omarmen nieuwe technologieën en inzichten die echte meerwaarde creëren, niet louter nieuwigheid.",
     },
   ]
 
   return (
     <Section>
       <SectionIntro
-        eyebrow="Our Values"
-        title="What drives us"
-        description="The principles that guide our work and relationships."
+        eyebrow="Onze waarden"
+        title="Wat ons drijft"
+        description="De principes die onze werking en relaties bepalen."
         align="center"
       />
 
@@ -202,22 +187,19 @@ function ValuesSection() {
 
 function TeamSection() {
   const team = [
-     
-   
     {
       name: "John Doe",
-      role: "Our future Colleague",
-      quote: "Join us and be part of our story.",
+      role: "Onze toekomstige collega",
+      quote: "Versterk ons team en bouw mee aan ons verhaal.",
     },
-    
   ]
 
   return (
     <Section className="bg-muted/30">
       <SectionIntro
-        eyebrow="Our Team"
-        title="The people behind pixiQ"
-        description="Experts united by a shared passion for creating impact."
+        eyebrow="Ons team"
+        title="De mensen achter pixiQ"
+        description="Experts verenigd door een gedeelde passie voor meetbare impact."
         align="center"
       />
 
@@ -238,8 +220,8 @@ function TeamSection() {
           variant="outline"
           className="border-pixiq-primary/30 text-pixiq-primary hover:bg-pixiq-primary/5"
         >
-          <Link href="/careers">
-            Join our team
+          <Link href="/nl/careers">
+            Versterk ons team
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>
@@ -252,28 +234,26 @@ function CultureSection() {
   return (
     <Section>
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        {/* Content */}
         <div>
           <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
-            How We Work
+            Hoe wij werken
           </p>
           <h2 className="text-3xl lg:text-4xl font-heading text-foreground leading-tight mb-6 text-balance">
-            A culture of excellence and collaboration
+            Een cultuur van kwaliteit en samenwerking
           </h2>
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
-              At pixiQ, we believe the best work happens when talented people are trusted to do what they do best. We foster an environment of autonomy, continuous learning, and mutual respect.
+              Bij pixiQ geloven we dat sterk werk ontstaat wanneer getalenteerde mensen het vertrouwen krijgen om te doen waar ze goed in zijn.
             </p>
             <p>
-              Our teams work closely with clients, becoming true extensions of their organizations. We invest in understanding their challenges, their culture, and their goals - because the best solutions come from deep partnership.
+              Onze teams werken nauw samen met klanten en worden een verlengstuk van hun organisatie. We investeren in het begrijpen van hun uitdagingen, cultuur en doelstellingen.
             </p>
             <p>
-              We celebrate wins together, learn from challenges together, and never stop pushing to improve. That&apos;s the pixiQ way.
+              We vieren successen samen, leren samen uit uitdagingen en blijven ons voortdurend verbeteren. Dat is de pixiQ-manier.
             </p>
           </div>
         </div>
 
-        {/* Visual placeholder */}
         <div className="relative aspect-video lg:aspect-square rounded-2xl overflow-hidden bg-muted">
           <div className="absolute inset-0 bg-pixiq-gradient opacity-10" />
           <div className="absolute inset-8 rounded-xl border border-pixiq-primary/10" />
@@ -287,9 +267,9 @@ function CultureSection() {
 
 function StatsSection() {
   const stats = [
-    { value: "9+", label: "Years in Business" },
-    { value: "10", label: "Local Heros" },
-    { value: "75+", label: "Projects Delivered" },
+    { value: "9+", label: "Jaar ervaring" },
+    { value: "10", label: "Lokale helden" },
+    { value: "75+", label: "Projecten gerealiseerd" },
   ]
 
   return (

@@ -7,12 +7,12 @@ import { SectionIntro } from "@/components/sections/section-intro"
 import { JobCard } from "@/components/cards/job-card"
 import { ValuePillar } from "@/components/blocks/value-blocks"
 import { CTASection } from "@/components/sections/cta-section"
-import { fallbackJobs } from "@/lib/fallback-jobs"
+import { fallbackJobsNl as fallbackJobs } from "@/lib/fallback-jobs-nl"
 
 export const metadata: Metadata = {
-  title: "Careers",
+  title: "Vacatures",
   description:
-    "Join the pixiQ team. Help us create digital experiences where creativity, technology and measurable impact come together.",
+    "Word deel van het pixiQ-team en help mee digitale ervaringen creëren waar creativiteit, technologie en meetbare impact samenkomen.",
 }
 
 async function getJobs() {
@@ -24,23 +24,29 @@ export default async function CareersPage() {
 
   return (
     <>
+      {/* Hero */}
       <CareersHero />
 
+      {/* Why pixiQ */}
       <WhyPixIQSection />
 
+      {/* Culture & Values */}
       <CultureValuesSection />
 
+      {/* Open Positions */}
       <OpenPositionsSection jobs={jobs} />
 
-<SpontaneousApplicationSection />
+      {/* Spontane sollicitatie */}
+      <SpontaneousApplicationSection />
 
-<CTASection
-  headline="Ready to start a conversation?"
-  description="Whether you have questions about a specific role or want to learn more about life at pixiQ, we'd love to hear from you."
-  primaryCTA={{ text: "Get in touch", href: "/contact" }}
-  secondaryCTA={{ text: "Email hello@pixiq.eu", href: "mailto:hello@pixiq.eu" }}
-  variant="gradient"
-/>
+      {/* Blauwe CTA */}
+      <CTASection
+        headline="Klaar voor een gesprek?"
+        description="Heb je vragen over een specifieke functie of wil je meer weten over werken bij pixiQ? We horen graag van je."
+        primaryCTA={{ text: "Neem contact op", href: "/nl/contact" }}
+        secondaryCTA={{ text: "Email hello@pixiq.eu", href: "mailto:hello@pixiq.eu" }}
+        variant="gradient"
+      />
     </>
   )
 }
@@ -57,24 +63,27 @@ function CareersHero() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl">
           <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
-            Careers at pixiQ
+            Vacatures bij pixiQ
           </p>
+
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-foreground leading-[1.1] tracking-tight mb-8 text-balance">
-            Join the{" "}
+            Word deel van het{" "}
             <span className="bg-pixiq-gradient bg-clip-text text-transparent">
               pixiQ team
             </span>
           </h1>
+
           <p className="text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-2xl mb-10 text-pretty">
-            Help us create digital experiences where creativity, technology and measurable impact come together.
+            Help mee digitale ervaringen creëren waar creativiteit, technologie en meetbare impact samenkomen.
           </p>
+
           <Button
             asChild
             size="lg"
             className="bg-pixiq-gradient hover:opacity-90 text-white font-medium px-8 h-14 text-base"
           >
             <a href="#positions">
-              View open positions
+              Bekijk vacatures
               <ArrowRight className="ml-2 h-5 w-5" />
             </a>
           </Button>
@@ -90,48 +99,25 @@ function WhyPixIQSection() {
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <div>
           <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
-            Why pixiQ
+            Waarom pixiQ
           </p>
+
           <h2 className="text-3xl lg:text-4xl font-heading text-foreground leading-tight mb-6 text-balance">
-            More than a workplace
+            Meer dan een werkplek
           </h2>
+
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
-              At pixiQ, you won&apos;t just build digital experiences - you&apos;ll transform how organizations communicate with their audiences. Our work spans industries and continents, from retail giants to cultural institutions.
+              Bij pixiQ bouw je niet zomaar digitale ervaringen — je helpt organisaties hun communicatie echt te transformeren.
             </p>
-            <p>
-              We&apos;re a team of strategists, technologists, and creative thinkers who believe technology should serve human experiences. We tackle complex challenges, push boundaries, and celebrate wins together.
-            </p>
-            <p>
-              If you&apos;re looking for meaningful work with real impact, a team that values your expertise, and opportunities to grow - you&apos;ve found your place.
-            </p>
-          </div>
-        </div>
 
-        <div className="grid grid-cols-2 gap-6">
-          <div className="p-6 rounded-xl bg-card border border-border text-center">
-            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">
-              50+
-            </div>
-            <div className="text-sm text-muted-foreground">Team members</div>
-          </div>
-          <div className="p-6 rounded-xl bg-card border border-border text-center">
-            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">
-              12+
-            </div>
-            <div className="text-sm text-muted-foreground">Years of growth</div>
-          </div>
-          <div className="p-6 rounded-xl bg-card border border-border text-center">
-            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">
-              150+
-            </div>
-            <div className="text-sm text-muted-foreground">Projects delivered</div>
-          </div>
-          <div className="p-6 rounded-xl bg-card border border-border text-center">
-            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">
-              15+
-            </div>
-            <div className="text-sm text-muted-foreground">Countries served</div>
+            <p>
+              We zijn een team van strategen, technologische experts en creatieve denkers die geloven dat technologie menselijke ervaringen moet versterken.
+            </p>
+
+            <p>
+              Zoek je betekenisvol werk met echte impact, een team dat jouw expertise waardeert en ruimte om te groeien? Dan ben je hier op de juiste plek.
+            </p>
           </div>
         </div>
       </div>
@@ -143,48 +129,42 @@ function CultureValuesSection() {
   const values = [
     {
       icon: Users,
-      title: "Collaboration",
-      description:
-        "We work as one team, supporting each other and our clients to achieve exceptional results together.",
+      title: "Samenwerking",
+      description: "We werken als één team en behalen samen uitzonderlijke resultaten.",
     },
     {
       icon: Heart,
-      title: "Trust",
-      description:
-        "We build relationships on transparency, reliability, and mutual respect - internally and externally.",
+      title: "Vertrouwen",
+      description: "We bouwen relaties op transparantie, betrouwbaarheid en respect.",
     },
     {
       icon: Lightbulb,
-      title: "Knowledge-driven",
-      description:
-        "We invest in learning, share expertise generously, and stay curious about new possibilities.",
+      title: "Kennisgedreven",
+      description: "We investeren in leren en delen expertise met elkaar.",
     },
     {
       icon: Target,
-      title: "Optimization",
-      description:
-        "We continuously improve - our processes, our solutions, and ourselves - never settling for good enough.",
+      title: "Optimalisatie",
+      description: "We verbeteren continu processen, oplossingen en onszelf.",
     },
     {
       icon: Zap,
-      title: "Innovation",
-      description:
-        "We embrace new ideas and technologies that create real value, not just novelty for its own sake.",
+      title: "Innovatie",
+      description: "We omarmen nieuwe ideeën die echte waarde creëren.",
     },
     {
       icon: Network,
       title: "Connected thinking",
-      description:
-        "We see the bigger picture, connecting dots across disciplines to create integrated solutions.",
+      description: "We verbinden disciplines om geïntegreerde oplossingen te bouwen.",
     },
   ]
 
   return (
     <Section>
       <SectionIntro
-        eyebrow="Culture & Values"
-        title="What we believe in"
-        description="Our values aren't just words on a wall - they guide how we work, hire, and make decisions every day."
+        eyebrow="Cultuur & Waarden"
+        title="Waar we in geloven"
+        description="Onze waarden bepalen hoe we werken, samenwerken en beslissingen nemen."
         align="center"
       />
 
@@ -207,9 +187,9 @@ function OpenPositionsSection({ jobs }: { jobs: any[] }) {
   return (
     <Section className="bg-muted/30" id="positions">
       <SectionIntro
-        eyebrow="Open Positions"
-        title="Find your next opportunity"
-        description="We're always looking for talented people to join our team. See what's available or send us a spontaneous application."
+        eyebrow="Openstaande vacatures"
+        title="Vind jouw volgende uitdaging"
+        description="Bekijk onze openstaande functies of stuur een spontane sollicitatie."
       />
 
       <div className="space-y-4">
@@ -218,10 +198,10 @@ function OpenPositionsSection({ jobs }: { jobs: any[] }) {
             key={String(job.slug || "")}
             title={String(job.title || "")}
             location={String(job.location || "")}
-            department={String(job.department || "General")}
+            department={String(job.department || "Algemeen")}
             type={String(job.type || "")}
             excerpt={String(job.excerpt || "")}
-            href={`/careers/${String(job.slug || "")}`}
+            href={`/nl/careers/${String(job.slug || "")}`}
           />
         ))}
       </div>
@@ -234,19 +214,21 @@ function SpontaneousApplicationSection() {
     <Section>
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-3xl lg:text-4xl font-heading text-foreground leading-tight mb-6">
-          Don&apos;t see the right role?
+          Geen passende vacature?
         </h2>
+
         <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-          We&apos;re always interested in meeting talented people, even if we don&apos;t have a specific opening right now. Send us your CV and tell us about yourself - we&apos;ll keep you in mind for future opportunities.
+          We maken graag kennis met talentvolle mensen, ook als er momenteel geen specifieke vacature openstaat.
         </p>
+
         <Button
           asChild
           size="lg"
           variant="outline"
           className="border-pixiq-primary/30 text-pixiq-primary hover:bg-pixiq-primary/5 font-medium px-8"
         >
-          <Link href="/contact">
-            Send spontaneous application
+          <Link href="/nl/contact">
+            Stuur spontane sollicitatie
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </Button>

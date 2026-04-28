@@ -1,19 +1,19 @@
 import type { Metadata } from "next"
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { Section, PageHeader } from "@/components/layout/section"
-import { CaseCard } from "@/components/cards/case-card"
 import { CTASection } from "@/components/sections/cta-section"
-import { cases, industries } from "@/lib/data/cases"
-import { CaseFilters } from "./case-filters"
 
 export const metadata: Metadata = {
   title: "Cases",
-  description: "Explore our portfolio of digital experience projects and the measurable results we've delivered for clients across industries.",
+  description:
+    "Explore our portfolio of digital experience projects and measurable business results.",
 }
 
 /**
  * Cases Overview Page
- * Portfolio of case studies with filtering
- * Future: Add CMS integration, search, pagination
+ * Temporary version until final case studies are published
  */
 export default function CasesPage() {
   return (
@@ -24,36 +24,53 @@ export default function CasesPage() {
           <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
             Case Studies
           </p>
+
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight mb-6 text-balance">
             We measure what we{" "}
             <span className="bg-pixiq-gradient bg-clip-text text-transparent">
               create.
             </span>
           </h1>
+
           <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
-            Every project we undertake is designed to deliver measurable business outcomes. Explore how we&apos;ve helped organizations transform their digital experiences.
+            Every project we undertake is designed to deliver measurable
+            business outcomes. We are currently finalizing our case studies and
+            will publish them here soon.
           </p>
         </div>
       </PageHeader>
 
-      {/* Filters & Grid */}
+      {/* Temporary Content */}
       <Section className="pt-0">
-        {/* Filter UI - Frontend only mock filters */}
-        <CaseFilters industries={industries} />
-        
-        {/* Cases Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {cases.map((caseItem) => (
-            <CaseCard
-              key={caseItem.slug}
-              title={caseItem.title}
-              excerpt={caseItem.excerpt}
-              href={`/cases/${caseItem.slug}`}
-              kpiValue={caseItem.kpis[0]?.value}
-              kpiLabel={caseItem.kpis[0]?.label}
-              industry={caseItem.industry}
-            />
-          ))}
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="rounded-2xl border border-border bg-muted/30 p-10 lg:p-14">
+            <h2 className="text-3xl lg:text-4xl font-heading text-foreground mb-6">
+              Our success stories are coming soon
+            </h2>
+
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+              We are currently preparing detailed case studies that show how
+              pixiQ helps organizations create measurable impact through digital
+              signage, AV integration, content intelligence and strategic
+              consultancy.
+            </p>
+
+            <p className="text-muted-foreground leading-relaxed mb-10">
+              In the meantime, feel free to contact us if you'd like to discuss
+              relevant references for your sector or project.
+            </p>
+
+            <Button
+              asChild
+              size="lg"
+              className="bg-pixiq-gradient hover:opacity-90 text-white font-medium px-8"
+            >
+              <Link href="/contact">
+                Get in touch
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </Section>
 

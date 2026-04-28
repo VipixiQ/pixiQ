@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -19,13 +20,60 @@ interface ContactFormProps {
 }
 
 export function ContactForm({ className }: ContactFormProps) {
+  const pathname = usePathname()
+  const isDutch = pathname.startsWith("/nl")
+
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState("")
   const [sector, setSector] = useState("")
-  const [language, setLanguage] = useState("en")
+  const [language, setLanguage] = useState(isDutch ? "nl" : "en")
 
-  const endpoint = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT
+  const endpoint = "https://formspree.io/f/mvzvlbog"
+
+  const t = {
+    thankYou: isDutch
+      ? "Bedankt voor uw bericht"
+      : "Thank you for reaching out",
+
+    thankYouText: isDutch
+      ? "We nemen binnen 24 uur contact met u op om uw project te bespreken."
+      : "We’ll get back to you within 24 hours to discuss your project.",
+
+    name: isDutch ? "Naam" : "Name",
+    yourName: isDutch ? "Uw naam" : "Your name",
+
+    company: isDutch ? "Bedrijf" : "Company",
+    companyName: isDutch ? "Bedrijfsnaam" : "Company name",
+
+    email: "Email",
+
+    sector: isDutch ? "Sector" : "Sector",
+    selectSector: isDutch ? "Selecteer sector" : "Select sector",
+
+    language: isDutch ? "Voorkeurstaal" : "Preferred language",
+    selectLanguage: isDutch ? "Selecteer taal" : "Select language",
+
+    message: isDutch ? "Bericht" : "Message",
+    messagePlaceholder: isDutch
+      ? "Vertel ons meer over uw project of vraag..."
+      : "Tell us about your project or question...",
+
+    sending: isDutch ? "Verzenden..." : "Sending...",
+    sendMessage: isDutch ? "Bericht verzenden" : "Send message",
+
+    privacy: isDutch
+      ? "Door dit formulier te verzenden gaat u akkoord met ons privacybeleid. We reageren binnen 24 uur."
+      : "By submitting this form, you agree to our privacy policy. We’ll respond within 24 hours.",
+
+    errorGeneric: isDutch
+      ? "Er ging iets mis. Probeer opnieuw."
+      : "Something went wrong. Please try again.",
+
+    networkError: isDutch
+      ? "Netwerkfout. Probeer opnieuw."
+      : "Network error. Please try again.",
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -59,12 +107,12 @@ export function ContactForm({ className }: ContactFormProps) {
         setIsSubmitted(true)
         form.reset()
         setSector("")
-        setLanguage("en")
+        setLanguage(isDutch ? "nl" : "en")
       } else {
-        setError(data?.errors?.[0]?.message || "Something went wrong. Please try again.")
+        setError(data?.errors?.[0]?.message || t.errorGeneric)
       }
     } catch {
-      setError("Network error. Please try again.")
+      setError(t.networkError)
     } finally {
       setIsSubmitting(false)
     }
@@ -80,11 +128,9 @@ export function ContactForm({ className }: ContactFormProps) {
       >
         <CheckCircle2 className="h-16 w-16 text-pixiq-secondary mx-auto mb-6" />
         <h3 className="text-2xl font-heading text-foreground mb-3">
-          Thank you for reaching out
+          {t.thankYou}
         </h3>
-        <p className="text-muted-foreground">
-          We&apos;ll get back to you within 24 hours to discuss your project.
-        </p>
+        <p className="text-muted-foreground">{t.thankYouText}</p>
       </div>
     )
   }
@@ -100,37 +146,46 @@ export function ContactForm({ className }: ContactFormProps) {
       <div className="grid gap-6">
         <div className="grid sm:grid-cols-2 gap-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-              Name <span className="text-destructive">*</span>
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-foreground mb-2"
+            >
+              {t.name} <span className="text-destructive">*</span>
             </label>
             <Input
               id="name"
               name="name"
               type="text"
               required
-              placeholder="Your name"
+              placeholder={t.yourName}
               className="h-12"
             />
           </div>
 
           <div>
-            <label htmlFor="company" className="block text-sm font-medium text-foreground mb-2">
-              Company <span className="text-destructive">*</span>
+            <label
+              htmlFor="company"
+              className="block text-sm font-medium text-foreground mb-2"
+            >
+              {t.company} <span className="text-destructive">*</span>
             </label>
             <Input
               id="company"
               name="company"
               type="text"
               required
-              placeholder="Company name"
+              placeholder={t.companyName}
               className="h-12"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-            Email <span className="text-destructive">*</span>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-foreground mb-2"
+          >
+            {t.email} <span className="text-destructive">*</span>
           </label>
           <Input
             id="email"
@@ -144,12 +199,15 @@ export function ContactForm({ className }: ContactFormProps) {
 
         <div className="grid sm:grid-cols-2 gap-6">
           <div>
-            <label htmlFor="sector" className="block text-sm font-medium text-foreground mb-2">
-              Sector
+            <label
+              htmlFor="sector"
+              className="block text-sm font-medium text-foreground mb-2"
+            >
+              {t.sector}
             </label>
             <Select value={sector} onValueChange={setSector}>
               <SelectTrigger className="h-12">
-                <SelectValue placeholder="Select sector" />
+                <SelectValue placeholder={t.selectSector} />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="retail">Retail</SelectItem>
@@ -158,18 +216,23 @@ export function ContactForm({ className }: ContactFormProps) {
                 <SelectItem value="healthcare">Healthcare</SelectItem>
                 <SelectItem value="education">Education</SelectItem>
                 <SelectItem value="government">Government</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
+                <SelectItem value="other">
+                  {isDutch ? "Andere" : "Other"}
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div>
-            <label htmlFor="language" className="block text-sm font-medium text-foreground mb-2">
-              Preferred language
+            <label
+              htmlFor="language"
+              className="block text-sm font-medium text-foreground mb-2"
+            >
+              {t.language}
             </label>
             <Select value={language} onValueChange={setLanguage}>
               <SelectTrigger className="h-12">
-                <SelectValue placeholder="Select language" />
+                <SelectValue placeholder={t.selectLanguage} />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="en">English</SelectItem>
@@ -181,14 +244,17 @@ export function ContactForm({ className }: ContactFormProps) {
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-            Message <span className="text-destructive">*</span>
+          <label
+            htmlFor="message"
+            className="block text-sm font-medium text-foreground mb-2"
+          >
+            {t.message} <span className="text-destructive">*</span>
           </label>
           <Textarea
             id="message"
             name="message"
             required
-            placeholder="Tell us about your project or question..."
+            placeholder={t.messagePlaceholder}
             rows={5}
             className="resize-none"
           />
@@ -203,17 +269,17 @@ export function ContactForm({ className }: ContactFormProps) {
           disabled={isSubmitting}
         >
           {isSubmitting ? (
-            "Sending..."
+            t.sending
           ) : (
             <>
-              Send message
+              {t.sendMessage}
               <ArrowRight className="ml-2 h-4 w-4" />
             </>
           )}
         </Button>
 
         <p className="text-xs text-muted-foreground text-center">
-          By submitting this form, you agree to our privacy policy. We&apos;ll respond within 24 hours.
+          {t.privacy}
         </p>
       </div>
     </form>

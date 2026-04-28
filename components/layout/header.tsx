@@ -3,11 +3,12 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-const navigation = [
+const navigationEn = [
   { name: "Home", href: "/" },
   { name: "Solutions", href: "/solutions" },
   { name: "Cases", href: "/cases" },
@@ -16,7 +17,24 @@ const navigation = [
   { name: "Contact", href: "/contact" },
 ]
 
+const navigationNl = [
+  { name: "Home", href: "/nl" },
+  { name: "Oplossingen", href: "/nl/solutions" },
+  { name: "Cases", href: "/nl/cases" },
+  { name: "Over ons", href: "/nl/about" },
+  { name: "Vacatures", href: "/nl/careers" },
+  { name: "Contact", href: "/nl/contact" },
+]
+
 export function Header() {
+  const pathname = usePathname()
+  const isNl = pathname.startsWith("/nl")
+
+  const navigation = isNl ? navigationNl : navigationEn
+  const homeHref = isNl ? "/nl" : "/"
+  const contactHref = isNl ? "/nl/contact" : "/contact"
+  const ctaText = isNl ? "Plan een gesprek" : "Book Meeting"
+
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -39,18 +57,16 @@ export function Header() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
-          {/* Logo */}
-<Link href="/" className="flex items-center">
-  <Image
-    src="/pixiQ_V1.png"
-    alt="pixiQ"
-    className={cn("w-auto transition-all duration-300", isScrolled ? "h-7" : "h-10")}
-    width={140}
-    height={40}
-  />
-</Link>
+          <Link href={homeHref} className="flex items-center">
+            <Image
+              src="/pixiQ_V1.png"
+              alt="pixiQ"
+              className={cn("w-auto transition-all duration-300", isScrolled ? "h-7" : "h-10")}
+              width={140}
+              height={40}
+            />
+          </Link>
 
-          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {navigation.map((item) => (
               <Link
@@ -63,54 +79,42 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <button
-                type="button"
+              <Link
+                href="/"
                 className="rounded-md border border-[#2c4d98]/30 px-3 py-1 text-sm font-medium text-[#2c4d98] hover:bg-[#2c4d98]/10 transition"
               >
                 EN
-              </button>
-              <button
-                type="button"
+              </Link>
+              <Link
+                href="/nl"
                 className="rounded-md border border-[#2c4d98]/30 px-3 py-1 text-sm font-medium text-[#2c4d98] hover:bg-[#2c4d98]/10 transition"
               >
                 NL
-              </button>
-              <button
-                type="button"
-                className="rounded-md border border-[#2c4d98]/30 px-3 py-1 text-sm font-medium text-[#2c4d98] hover:bg-[#2c4d98]/10 transition"
-              >
-                FR
-              </button>
+              </Link>
             </div>
+
             <Button
               asChild
               className="hover:opacity-90 text-white font-medium px-6"
-              style={{ backgroundImage: 'linear-gradient(to right, #1698d5, #2c4d98)' }}
+              style={{ backgroundImage: "linear-gradient(to right, #1698d5, #2c4d98)" }}
             >
-              <Link href="/contact">Book Meeting</Link>
+              <Link href={contactHref}>{ctaText}</Link>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             type="button"
             className="lg:hidden p-2 text-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-background border-t border-border">
           <div className="px-4 py-6 space-y-4">
@@ -119,23 +123,32 @@ export function Header() {
                 key={item.name}
                 href={item.href}
                 className="block text-base font-medium text-foreground transition-colors"
-                style={{ ['--hover-color' as string]: '#2c4d98' }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#2c4d98'}
-                onMouseLeave={(e) => e.currentTarget.style.color = ''}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#2c4d98")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-            <div className="pt-4 border-t border-border">
-              <Button
-                asChild
-                className="rounded-md px-6 py-2.5 text-white font-semibold tracking-[0.01em] hover:opacity-95 transition-all duration-200"
-                style={{ backgroundImage: 'linear-gradient(to right, #2c4d98, #1698d5)' }}
-              >
-                <Link href="/contact">Book Meeting</Link>
-              </Button>
+
+            <div className="flex items-center gap-2 pt-4 border-t border-border">
+              <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+                EN
+              </Link>
+              <Link href="/nl" onClick={() => setIsMobileMenuOpen(false)}>
+                NL
+              </Link>
             </div>
+
+            <Button
+              asChild
+              className="rounded-md px-6 py-2.5 text-white font-semibold tracking-[0.01em] hover:opacity-95 transition-all duration-200"
+              style={{ backgroundImage: "linear-gradient(to right, #2c4d98, #1698d5)" }}
+            >
+              <Link href={contactHref} onClick={() => setIsMobileMenuOpen(false)}>
+                {ctaText}
+              </Link>
+            </Button>
           </div>
         </div>
       )}
