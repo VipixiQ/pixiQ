@@ -39,7 +39,7 @@ export default function SolutionsPage() {
       <SolutionsGridSection />
       <MethodologySection />
       <TrustSection />
-      <CaseTeaserSection />
+      {/* <CaseTeaserSection /> */}
 
       <CTASection
         headline="Klaar om uw project te bespreken?"

@@ -51,7 +51,7 @@ export default function SolutionsPage() {
       <TrustSection />
 
       {/* Case Teasers */}
-      <CaseTeaserSection />
+      {/* <CaseTeaserSection /> */}
 
       {/* CTA */}
       <CTASection

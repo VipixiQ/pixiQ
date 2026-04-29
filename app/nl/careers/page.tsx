@@ -120,6 +120,25 @@ function WhyPixIQSection() {
             </p>
           </div>
         </div>
+
+        <div className="grid grid-cols-2 gap-6">
+          <div className="p-6 rounded-xl bg-card border border-border text-center">
+            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">10+</div>
+            <div className="text-sm text-muted-foreground">Teamleden</div>
+          </div>
+          <div className="p-6 rounded-xl bg-card border border-border text-center">
+            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">9+</div>
+            <div className="text-sm text-muted-foreground">Jaar ervaring</div>
+          </div>
+          <div className="p-6 rounded-xl bg-card border border-border text-center">
+            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">75+</div>
+            <div className="text-sm text-muted-foreground">Projecten opgeleverd</div>
+          </div>
+          <div className="p-6 rounded-xl bg-card border border-border text-center">
+            <div className="text-4xl font-heading font-bold bg-pixiq-gradient bg-clip-text text-transparent mb-2">15+</div>
+            <div className="text-sm text-muted-foreground">Landen bediend</div>
+          </div>
+        </div>
       </div>
     </Section>
   )
