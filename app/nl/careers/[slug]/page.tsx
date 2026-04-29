@@ -12,6 +12,12 @@ interface JobPageProps {
   params: Promise<{ slug: string }>
 }
 
+export async function generateStaticParams() {
+  return fallbackJobs.map((job) => ({
+    slug: job.slug,
+  }))
+}
+
 async function getJobBySlug(slug: string) {
   return fallbackJobs.find((job) => job.slug === slug) || null
 }
@@ -176,106 +182,8 @@ export default async function JobPage({ params }: JobPageProps) {
               </div>
             )}
           </div>
-
-          <div className="lg:col-span-1">
-            <div className="sticky top-28 space-y-6">
-              <div className="p-6 rounded-xl bg-card border border-border">
-                <h3 className="text-lg font-heading text-foreground mb-4">
-                  Interesse?
-                </h3>
-                <p className="text-sm text-muted-foreground mb-6">
-                  Solliciteer nu en we nemen binnen 5 werkdagen contact met je op.
-                </p>
-                <Button
-                  asChild
-                  className="w-full bg-pixiq-gradient hover:opacity-90 text-white font-medium"
-                >
-                  <a href="/nl/contact">
-                    Solliciteer nu
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
-                </Button>
-              </div>
-
-              <div className="p-6 rounded-xl bg-muted/50 border border-border space-y-4">
-                {job.location && (
-                  <div className="flex items-start gap-3">
-                    <MapPin className="h-5 w-5 text-pixiq-secondary flex-shrink-0" />
-                    <div>
-                      <div className="text-sm text-muted-foreground">Locatie</div>
-                      <div className="font-medium text-foreground">{job.location}</div>
-                    </div>
-                  </div>
-                )}
-
-                {department && (
-                  <div className="flex items-start gap-3">
-                    <Building2 className="h-5 w-5 text-pixiq-secondary flex-shrink-0" />
-                    <div>
-                      <div className="text-sm text-muted-foreground">Afdeling</div>
-                      <div className="font-medium text-foreground">{department}</div>
-                    </div>
-                  </div>
-                )}
-
-                {job.type && (
-                  <div className="flex items-start gap-3">
-                    <Clock className="h-5 w-5 text-pixiq-secondary flex-shrink-0" />
-                    <div>
-                      <div className="text-sm text-muted-foreground">Type</div>
-                      <div className="font-medium text-foreground">{job.type}</div>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="text-center p-6">
-                <p className="text-sm text-muted-foreground mb-2">Vragen?</p>
-                <a
-                  href="mailto:hello@pixiq.eu"
-                  className="text-sm font-medium text-pixiq-primary hover:underline"
-                >
-                  hello@pixiq.eu
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
       </Section>
-
-      {relatedJobs.length > 0 && (
-        <Section className="bg-muted/30">
-          <SectionIntro
-            eyebrow="Gerelateerde vacatures"
-            title="Andere functies die je misschien interessant vindt"
-          />
-          <div className="space-y-4">
-            {relatedJobs.map((relatedJob) => (
-              <JobCard
-                key={relatedJob.slug}
-                title={relatedJob.title}
-                location={relatedJob.location}
-                department={relatedJob.department || "General"}
-                type={relatedJob.type}
-                excerpt={relatedJob.excerpt || ""}
-                href={`/nl/careers/${relatedJob.slug}`}
-              />
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <Button
-              asChild
-              variant="outline"
-              className="border-pixiq-primary/30 text-pixiq-primary hover:bg-pixiq-primary/5"
-            >
-              <Link href="/nl/careers">
-                Bekijk alle vacatures
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </Section>
-      )}
     </>
   )
 }

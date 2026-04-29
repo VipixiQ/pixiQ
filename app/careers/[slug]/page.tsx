@@ -12,6 +12,12 @@ interface JobPageProps {
   params: Promise<{ slug: string }>
 }
 
+export async function generateStaticParams() {
+  return fallbackJobs.map((job) => ({
+    slug: job.slug,
+  }))
+}
+
 async function getJobBySlug(slug: string) {
   return fallbackJobs.find((job) => job.slug === slug) || null
 }
@@ -49,7 +55,6 @@ export default async function JobPage({ params }: JobPageProps) {
   }
 
   const allJobs = await getJobs()
-
   const department = job.department || "General"
 
   const relatedJobs = allJobs
