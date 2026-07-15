@@ -264,6 +264,8 @@ function FeaturedCaseSection() {
         kpiValue="+37%"
         kpiLabel="dwell time improvement"
         industry="Retail"
+        imageSrc="/pictures/1-home-featured-project.jpg"
+        imageAlt="Featured pixiQ digital signage project"
       />
       
       <div className="mt-10 text-center">
@@ -315,17 +317,16 @@ function AboutTeaserSection() {
           </Button>
         </div>
 
-        {/* Visual placeholder */}
-        <div className="relative aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden bg-muted">
-          <div className="absolute inset-0 bg-pixiQ-gradient opacity-10" />
-          <div className="absolute inset-8 rounded-xl border border-pixiQ-primary/10" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="w-40 h-40 rounded-full bg-pixiQ-gradient opacity-20 blur-2xl" />
-          </div>
-          {/* Abstract shapes */}
-          <div className="absolute top-8 right-8 w-20 h-20 rounded-lg bg-pixiQ-secondary/20 rotate-12" />
-          <div className="absolute bottom-12 left-12 w-16 h-16 rounded-full bg-pixiQ-primary/20" />
-        </div>
+        {/* Visual */}
+<div className="relative aspect-square lg:aspect-[4/3] overflow-hidden rounded-2xl">
+  <Image
+    src="/pictures/2-home-about-pixiq.png"
+    alt="About pixiQ"
+    fill
+    priority
+    className="object-cover object-center"
+  />
+</div>
       </div>
     </Section>
   )

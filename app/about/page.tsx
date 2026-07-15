@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowRight, Target, Eye, Heart, Lightbulb, Users, Shield } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Section, PageHeader } from "@/components/layout/section"
+import { Section, Container } from "@/components/layout/section"
 import { SectionIntro } from "@/components/sections/section-intro"
 import { TeamCard } from "@/components/cards/team-card"
 import { ValuePillar } from "@/components/blocks/value-blocks"
@@ -22,23 +23,77 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      {/* Hero / Intro */}
-      <PageHeader>
-        <div className="max-w-4xl">
-          <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
-            About pixiQ
-          </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight mb-6 text-balance">
-            Creating digital experiences with{" "}
-            <span className="bg-pixiq-gradient bg-clip-text text-transparent">
-              measurable impact.
-            </span>
-          </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
-            We&apos;re a team of strategists, technologists, and creative thinkers united by a single mission: helping organizations create digital experiences that deliver real, quantifiable results.
-          </p>
+            {/* Hero / Intro */}
+      <section className="relative overflow-hidden pt-32 pb-24 lg:pt-44 lg:pb-36">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            className="absolute -top-24 right-[-120px] h-[420px] w-[620px] rounded-full blur-3xl"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(44,77,152,0.16) 0%, rgba(22,152,213,0.20) 100%)",
+            }}
+          />
+
+          <div
+            className="absolute top-[24%] -left-24 h-[280px] w-[280px] rounded-full blur-3xl"
+            style={{ background: "rgba(44,77,152,0.08)" }}
+          />
+
+          <div
+            className="absolute inset-x-0 top-0 h-[520px]"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.94) 42%, rgba(22,152,213,0.04) 100%)",
+              clipPath: "polygon(0 0, 100% 0, 100% 82%, 0 100%)",
+            }}
+          />
         </div>
-      </PageHeader>
+
+        <div className="pointer-events-none absolute inset-y-0 left-[47%] right-0 hidden lg:block">
+          <div
+            className="relative h-full w-full overflow-hidden"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.08) 8%, rgba(0,0,0,0.28) 16%, rgba(0,0,0,0.55) 26%, rgba(0,0,0,0.82) 38%, rgba(0,0,0,0.96) 52%, rgba(0,0,0,1) 68%)",
+              maskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.08) 8%, rgba(0,0,0,0.28) 16%, rgba(0,0,0,0.55) 26%, rgba(0,0,0,0.82) 38%, rgba(0,0,0,0.96) 52%, rgba(0,0,0,1) 68%)",
+            }}
+          >
+            <Image
+              src="/pictures/5-about-hero.jpg"
+              alt="About pixiQ"
+              fill
+              priority
+              className="object-cover object-center opacity-80 scale-[1.02]"
+            />
+          </div>
+        </div>
+
+        <Container className="relative">
+          <div className="max-w-4xl">
+            <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
+              About pixiQ
+            </p>
+
+            <h1 className="max-w-4xl text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-heading font-bold leading-[1.02] tracking-[-0.05em] text-black text-balance">
+              Creating digital experiences with{" "}
+              <span
+                className="bg-clip-text text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(90deg, #2c4d98 0%, #1698d5 100%)",
+                }}
+              >
+                measurable impact.
+              </span>
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#4b5563] sm:text-xl lg:text-[1.45rem]">
+              We&apos;re a team of strategists, technologists, and creative thinkers united by a single mission: helping organizations create digital experiences that deliver real, quantifiable results.
+            </p>
+          </div>
+        </Container>
+      </section>
 
       {/* Story / Evolution */}
       <StorySection />
