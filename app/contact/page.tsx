@@ -1,69 +1,129 @@
-import { Metadata } from 'next'
-import { Section, Container } from '@/components/layout/section'
-import { ContactForm } from '@/components/forms/contact-form'
-import { PageHeader } from '@/components/layout/section'
-import { MapPin, Phone, Mail, Clock } from 'lucide-react'
+import type { Metadata } from "next"
+import Image from "next/image"
+import { Section, Container } from "@/components/layout/section"
+import { ContactForm } from "@/components/forms/contact-form"
+import { MapPin, Phone, Mail, Clock } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Ready to transform your space? Contact pixiQ for a consultation on digital signage, AV integration, and content intelligence solutions.',
+  title: "Contact",
+  description:
+    "Ready to transform your space? Contact pixiQ for a consultation on digital signage, AV integration, and content intelligence solutions.",
 }
 
 const offices = [
   {
-    city: 'Ostend',
-    country: 'Belgium',
-    address: 'Torhoutsteenweg 649A',
-    postalCode: '8400 Ostend',
-    phone: '+32 59 79 16 16',
-    email: 'hello@pixiq.eu',
+    city: "Ostend",
+    country: "Belgium",
+    address: "Torhoutsteenweg 649A",
+    postalCode: "8400 Ostend",
+    phone: "+32 59 79 16 16",
+    email: "hello@pixiq.eu",
     isHeadquarters: true,
   },
-  
 ]
 
 const contactReasons = [
   {
-    title: 'Project Inquiry',
-    description: 'Discuss a new project or explore how we can help transform your space.',
-    icon: '01',
+    title: "Project Inquiry",
+    description:
+      "Discuss a new project or explore how we can help transform your space.",
+    icon: "01",
   },
   {
-    title: 'Partnership',
-    description: 'Explore strategic partnerships and collaboration opportunities.',
-    icon: '02',
+    title: "Partnership",
+    description:
+      "Explore strategic partnerships and collaboration opportunities.",
+    icon: "02",
   },
   {
-    title: 'Support',
-    description: 'Get technical support or assistance with existing installations.',
-    icon: '03',
+    title: "Support",
+    description:
+      "Get technical support or assistance with existing installations.",
+    icon: "03",
   },
   {
-    title: 'Careers',
-    description: 'Join our team of innovators shaping the future of digital experiences.',
-    icon: '04',
+    title: "Careers",
+    description:
+      "Join our team of innovators shaping the future of digital experiences.",
+    icon: "04",
   },
 ]
 
 export default function ContactPage() {
   return (
     <>
-      <PageHeader>
-        <div className="max-w-4xl">
-          <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
-            Contact
-          </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight mb-6 text-balance">
-            Let&apos;s Create Something{" "}
-            <span className="bg-pixiq-gradient bg-clip-text text-transparent">
-              Extraordinary
-            </span>
-          </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
-            Ready to transform your space into a data-driven digital experience? We&apos;d love to hear from you.
-          </p>
+      {/* Hero */}
+      <section className="relative overflow-hidden pt-32 pb-24 lg:pt-44 lg:pb-36">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            className="absolute -top-24 right-[-120px] h-[420px] w-[620px] rounded-full blur-3xl"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(44,77,152,0.16) 0%, rgba(22,152,213,0.20) 100%)",
+            }}
+          />
+
+          <div
+            className="absolute top-[24%] -left-24 h-[280px] w-[280px] rounded-full blur-3xl"
+            style={{ background: "rgba(44,77,152,0.08)" }}
+          />
+
+          <div
+            className="absolute inset-x-0 top-0 h-[520px]"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.94) 42%, rgba(22,152,213,0.04) 100%)",
+              clipPath: "polygon(0 0, 100% 0, 100% 82%, 0 100%)",
+            }}
+          />
         </div>
-      </PageHeader>
+
+        <div className="pointer-events-none absolute inset-y-0 left-[47%] right-0 hidden lg:block">
+          <div
+            className="relative h-full w-full overflow-hidden"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.08) 8%, rgba(0,0,0,0.28) 16%, rgba(0,0,0,0.55) 26%, rgba(0,0,0,0.82) 38%, rgba(0,0,0,0.96) 52%, rgba(0,0,0,1) 68%)",
+              maskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.08) 8%, rgba(0,0,0,0.28) 16%, rgba(0,0,0,0.55) 26%, rgba(0,0,0,0.82) 38%, rgba(0,0,0,0.96) 52%, rgba(0,0,0,1) 68%)",
+            }}
+          >
+            <Image
+              src="/pictures/10-contact-hero.png"
+              alt="Contact pixiQ"
+              fill
+              priority
+              className="object-cover object-center opacity-80 scale-[1.02]"
+            />
+          </div>
+        </div>
+
+        <Container className="relative">
+          <div className="max-w-4xl">
+            <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
+              Contact
+            </p>
+
+            <h1 className="max-w-4xl text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-heading font-bold leading-[1.02] tracking-[-0.05em] text-black text-balance">
+              Let&apos;s create something{" "}
+              <span
+                className="bg-clip-text text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(90deg, #2c4d98 0%, #1698d5 100%)",
+                }}
+              >
+                extraordinary.
+              </span>
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#4b5563] sm:text-xl lg:text-[1.45rem]">
+              Ready to transform your space into a data-driven digital
+              experience? We&apos;d love to hear from you.
+            </p>
+          </div>
+        </Container>
+      </section>
 
       {/* Contact Reasons */}
       <Section className="bg-muted/30">
@@ -77,9 +137,11 @@ export default function ContactPage() {
                 <span className="text-4xl font-serif font-bold text-primary/20 group-hover:text-primary/40 transition-colors">
                   {reason.icon}
                 </span>
+
                 <h3 className="font-serif font-bold text-lg mt-4 mb-2 text-foreground">
                   {reason.title}
                 </h3>
+
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   {reason.description}
                 </p>
@@ -98,9 +160,12 @@ export default function ContactPage() {
               <h2 className="font-serif font-bold text-3xl mb-4 text-foreground">
                 Send Us a Message
               </h2>
+
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                Fill out the form below and one of our experts will get back to you within 24 hours.
+                Fill out the form below and one of our experts will get back to
+                you within 24 hours.
               </p>
+
               <ContactForm />
             </div>
 
@@ -109,8 +174,10 @@ export default function ContactPage() {
               <h2 className="font-serif font-bold text-3xl mb-4 text-foreground">
                 Get in Touch
               </h2>
+
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                Prefer to reach out directly? Here are all the ways you can connect with us.
+                Prefer to reach out directly? Here are all the ways you can
+                connect with us.
               </p>
 
               {/* Quick Contact */}
@@ -122,9 +189,12 @@ export default function ContactPage() {
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
+
                   <div>
                     <p className="text-sm text-muted-foreground">Call us</p>
-                    <p className="font-semibold text-foreground">+32 59 79 16 16</p>
+                    <p className="font-semibold text-foreground">
+                      +32 59 79 16 16
+                    </p>
                   </div>
                 </a>
 
@@ -135,9 +205,12 @@ export default function ContactPage() {
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                     <Mail className="w-5 h-5 text-primary" />
                   </div>
+
                   <div>
                     <p className="text-sm text-muted-foreground">Email us</p>
-                    <p className="font-semibold text-foreground">hello@pixiq.eu</p>
+                    <p className="font-semibold text-foreground">
+                      hello@pixiq.eu
+                    </p>
                   </div>
                 </a>
 
@@ -145,26 +218,36 @@ export default function ContactPage() {
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                     <Clock className="w-5 h-5 text-primary" />
                   </div>
+
                   <div>
-                    <p className="text-sm text-muted-foreground">Business hours</p>
-                    <p className="font-semibold text-foreground">Mon-Fri: 8:30 - 17:00</p>
+                    <p className="text-sm text-muted-foreground">
+                      Business hours
+                    </p>
+                    <p className="font-semibold text-foreground">
+                      Mon-Fri: 8:30 - 17:00
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Social Links */}
               <div>
-                <h3 className="font-serif font-bold text-lg mb-4 text-foreground">Follow Us</h3>
-                <div className="flex gap-3">
-                  {['LinkedIn', 'Twitter', 'Instagram', 'YouTube'].map((social) => (
-                    <a
-                      key={social}
-                      href="#"
-                      className="px-4 py-2 border border-border rounded-full text-sm text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
-                    >
-                      {social}
-                    </a>
-                  ))}
+                <h3 className="font-serif font-bold text-lg mb-4 text-foreground">
+                  Follow Us
+                </h3>
+
+                <div className="flex flex-wrap gap-3">
+                  {["LinkedIn", "Twitter", "Instagram", "YouTube"].map(
+                    (social) => (
+                      <a
+                        key={social}
+                        href="#"
+                        className="px-4 py-2 border border-border rounded-full text-sm text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
+                      >
+                        {social}
+                      </a>
+                    )
+                  )}
                 </div>
               </div>
             </div>
@@ -179,6 +262,7 @@ export default function ContactPage() {
             <h2 className="font-serif font-bold text-3xl md:text-4xl mb-4">
               Our Office
             </h2>
+
             <p className="text-white/70 max-w-2xl mx-auto">
               Based in Ostend, Belgium, serving clients across Europe.
             </p>
@@ -195,26 +279,43 @@ export default function ContactPage() {
                     Headquarters
                   </span>
                 )}
-                <h3 className="font-serif font-bold text-xl mb-1">{office.city}</h3>
-                <p className="text-white/60 text-sm mb-4">{office.country}</p>
-                
+
+                <h3 className="font-serif font-bold text-xl mb-1">
+                  {office.city}
+                </h3>
+
+                <p className="text-white/60 text-sm mb-4">
+                  {office.country}
+                </p>
+
                 <div className="space-y-3 text-sm">
                   <div className="flex items-start gap-3">
                     <MapPin className="w-4 h-4 text-white/60 mt-0.5 flex-shrink-0" />
+
                     <div className="text-white/80">
                       <p>{office.address}</p>
                       <p>{office.postalCode}</p>
                     </div>
                   </div>
+
                   <div className="flex items-center gap-3">
                     <Phone className="w-4 h-4 text-white/60 flex-shrink-0" />
-                    <a href={`tel:${office.phone.replace(/\s/g, '')}`} className="text-white/80 hover:text-white">
+
+                    <a
+                      href={`tel:${office.phone.replace(/\s/g, "")}`}
+                      className="text-white/80 hover:text-white"
+                    >
                       {office.phone}
                     </a>
                   </div>
+
                   <div className="flex items-center gap-3">
                     <Mail className="w-4 h-4 text-white/60 flex-shrink-0" />
-                    <a href={`mailto:${office.email}`} className="text-white/80 hover:text-white">
+
+                    <a
+                      href={`mailto:${office.email}`}
+                      className="text-white/80 hover:text-white"
+                    >
                       {office.email}
                     </a>
                   </div>
@@ -226,19 +327,19 @@ export default function ContactPage() {
       </Section>
 
       {/* Map */}
-<Section className="!py-0">
-  <div className="rounded-2xl overflow-hidden border border-border">
-    <iframe
-  title="pixiQ Office Location"
-  width="100%"
-  height="400"
-  style={{ border: 0 }}
-  loading="lazy"
-  allowFullScreen
-  src="https://www.google.com/maps?q=Torhoutsesteenweg%20649A,%208400%20Ostend,%20Belgium&z=15&output=embed"
-/>
-  </div>
-</Section>
+      <Section className="!py-0">
+        <div className="rounded-2xl overflow-hidden border border-border">
+          <iframe
+            title="pixiQ Office Location"
+            width="100%"
+            height="400"
+            style={{ border: 0 }}
+            loading="lazy"
+            allowFullScreen
+            src="https://www.google.com/maps?q=Torhoutsesteenweg%20649A,%208400%20Ostend,%20Belgium&z=15&output=embed"
+          />
+        </div>
+      </Section>
     </>
   )
 }
