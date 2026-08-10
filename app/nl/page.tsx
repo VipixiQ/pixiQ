@@ -83,7 +83,8 @@ function HeroSection() {
             <span
               className="bg-clip-text text-transparent"
               style={{
-                backgroundImage: "linear-gradient(90deg, #2c4d98 0%, #1698d5 100%)",
+                backgroundImage:
+                  "linear-gradient(90deg, #2c4d98 0%, #1698d5 100%)",
               }}
             >
               Measurable results.
@@ -91,7 +92,8 @@ function HeroSection() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#4b5563] sm:text-xl lg:text-[1.45rem]">
-            Wij verbinden hardware, software, content en data tot één doelgerichte digitale beleving met meetbare impact.
+            Wij verbinden hardware, software, content en data tot één
+            doelgerichte digitale beleving met meetbare impact.
           </p>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -99,7 +101,10 @@ function HeroSection() {
               asChild
               size="lg"
               className="rounded-md px-8 h-14 text-base font-semibold text-white hover:opacity-95 transition-all duration-200"
-              style={{ backgroundImage: "linear-gradient(to right, #2c4d98, #1698d5)" }}
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, #2c4d98, #1698d5)",
+              }}
             >
               <Link href="/nl/contact">
                 Plan ROI-sessie
@@ -226,22 +231,65 @@ function SolutionsSection() {
 function FeaturedCaseSection() {
   return (
     <Section className="bg-muted/30">
-      <SectionIntro
-        eyebrow="Uitgelicht project"
-        title="Meetbare impact creëren"
-        description="Ontdek hoe we organisaties helpen hun digitale aanwezigheid te transformeren."
-      />
+      <div className="mb-10">
+        <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-3">
+          Uitgelicht project
+        </p>
 
-      <CaseCardFeatured
-        title="Retail Experience Transformation"
-        excerpt="We hielpen een retailketen hun digitale winkelervaring te herdenken met een geïntegreerd signage-netwerk over 120+ locaties, realtime contentbeheer en geavanceerde analytics."
-        href="/nl/cases/retail-experience-transformation"
-        kpiValue="+37%"
-        kpiLabel="verbetering in dwell time"
-        industry="Retail"
-      />
+        <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-4">
+          Digitale beleving in actie
+        </h2>
 
-      <div className="mt-10 text-center">
+        <p className="text-lg text-muted-foreground max-w-2xl">
+          Ontdek hoe we digitale technologie inzetten om communicatie,
+          bezoekersbeleving en flexibiliteit samen te brengen.
+        </p>
+      </div>
+
+      <div className="grid lg:grid-cols-2 overflow-hidden rounded-2xl border border-border bg-background">
+        <div className="relative min-h-[320px] lg:min-h-[420px]">
+          <Image
+            src="/pictures/case-filou-oostende-hero.jpg"
+            alt="Filou Oostende basketbalarena"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+
+          <div className="absolute left-5 top-5">
+            <span className="rounded-full bg-white/90 px-3 py-1 text-sm font-medium text-foreground backdrop-blur-sm">
+              Sport & Entertainment
+            </span>
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
+          <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-3">
+            Filou Oostende
+          </p>
+
+          <h3 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-5">
+            Een sterkere digitale bezoekersbeleving doorheen de arena
+          </h3>
+
+          <p className="text-muted-foreground leading-relaxed mb-8">
+            Een geïntegreerde digital signage-oplossing in de supportersinkom
+            en VIP-omgeving, waarbij indoor LED, interactieve displays en
+            flexibel contentbeheer samen zorgen voor een dynamische en
+            professionele bezoekerservaring.
+          </p>
+
+          <Link
+            href="/nl/cases/filou-oostende"
+            className="inline-flex items-center text-pixiq-primary font-medium hover:underline"
+          >
+            Bekijk de case
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+
+      <div className="mt-8 text-center">
         <Button
           asChild
           variant="outline"
@@ -271,11 +319,15 @@ function AboutTeaserSection() {
           </h2>
 
           <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-            Wij zijn een team van strategen, technologen en creatieve denkers, verenigd door één missie: organisaties helpen digitale belevingen te creëren die meetbare resultaten opleveren.
+            Wij zijn een team van strategen, technologen en creatieve denkers,
+            verenigd door één missie: organisaties helpen digitale belevingen
+            te creëren die meetbare resultaten opleveren.
           </p>
 
           <p className="text-muted-foreground leading-relaxed mb-8">
-            Met diepgaande expertise in digital signage, AV-integratie, contentstrategie en data-analyse bieden wij een uniek geïntegreerde aanpak voor elk project dat we realiseren.
+            Met diepgaande expertise in digital signage, AV-integratie,
+            contentstrategie en data-analyse bieden wij een uniek geïntegreerde
+            aanpak voor elk project dat we realiseren.
           </p>
 
           <Button
@@ -290,14 +342,14 @@ function AboutTeaserSection() {
           </Button>
         </div>
 
-        <div className="relative aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden bg-muted">
-          <div className="absolute inset-0 bg-pixiq-gradient opacity-10" />
-          <div className="absolute inset-8 rounded-xl border border-pixiq-primary/10" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="w-40 h-40 rounded-full bg-pixiq-gradient opacity-20 blur-2xl" />
-          </div>
-          <div className="absolute top-8 right-8 w-20 h-20 rounded-lg bg-pixiq-secondary/20 rotate-12" />
-          <div className="absolute bottom-12 left-12 w-16 h-16 rounded-full bg-pixiq-primary/20" />
+        <div className="relative aspect-square lg:aspect-[4/3] overflow-hidden rounded-2xl">
+          <Image
+            src="/pictures/2-home-about-pixiq.png"
+            alt="Over pixiQ"
+            fill
+            priority
+            className="object-cover object-center"
+          />
         </div>
       </div>
     </Section>

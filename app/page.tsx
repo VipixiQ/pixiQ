@@ -251,28 +251,69 @@ function SolutionsSection() {
 function FeaturedCaseSection() {
   return (
     <Section className="bg-muted/30">
-      <SectionIntro
-        eyebrow="Featured project"
-        title="Creating measurable impact"
-        description="See how we help leading organizations transform their digital presence."
-      />
-      
-      <CaseCardFeatured
-        title="Retail Experience Transformation"
-        excerpt="We helped a leading retail chain reimagine their in-store digital experience, implementing an integrated signage network across 120+ locations with real-time content management and advanced analytics."
-        href="/cases/retail-experience-transformation"
-        kpiValue="+37%"
-        kpiLabel="dwell time improvement"
-        industry="Retail"
-        imageSrc="/pictures/1-home-featured-project.jpg"
-        imageAlt="Featured pixiQ digital signage project"
-      />
-      
-      <div className="mt-10 text-center">
+      <div className="mb-10">
+        <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-3">
+          Featured Project
+        </p>
+
+        <h2 className="text-3xl sm:text-4xl font-heading font-bold text-foreground mb-4">
+          Digital experiences in action
+        </h2>
+
+        <p className="text-lg text-muted-foreground max-w-2xl">
+          Discover how we use digital technology to bring communication,
+          visitor experience and flexibility together.
+        </p>
+      </div>
+
+      <div className="grid lg:grid-cols-2 overflow-hidden rounded-2xl border border-border bg-background">
+        <div className="relative min-h-[320px] lg:min-h-[420px]">
+          <Image
+            src="/pictures/case-filou-oostende-hero.jpg"
+            alt="Filou Oostende basketball arena"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+
+          <div className="absolute left-5 top-5">
+            <span className="rounded-full bg-white/90 px-3 py-1 text-sm font-medium text-foreground backdrop-blur-sm">
+              Sports & Entertainment
+            </span>
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
+          <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-3">
+            Filou Oostende
+          </p>
+
+          <h3 className="text-2xl sm:text-3xl font-heading font-bold text-foreground mb-5">
+            A stronger digital guest experience throughout the arena
+          </h3>
+
+          <p className="text-muted-foreground leading-relaxed mb-8">
+            An integrated digital signage solution across the supporters&apos;
+            entrance and VIP environment, combining indoor LED, interactive
+            displays and flexible content management to create a more dynamic
+            and professional visitor experience.
+          </p>
+
+          <Link
+            href="/cases/filou-oostende"
+            className="inline-flex items-center text-pixiq-primary font-medium hover:underline"
+          >
+            View case
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+
+      <div className="mt-8 text-center">
         <Button
           asChild
           variant="outline"
-          className="border-pixiQ-primary/30 text-pixiQ-primary hover:bg-pixiQ-primary/5"
+          className="border-pixiq-primary/30 text-pixiq-primary hover:bg-pixiq-primary/5"
         >
           <Link href="/cases">
             View all projects

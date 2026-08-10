@@ -1,8 +1,17 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, Target, Eye, Heart, Lightbulb, Users, Shield } from "lucide-react"
+import Image from "next/image"
+import {
+  ArrowRight,
+  Target,
+  Eye,
+  Heart,
+  Lightbulb,
+  Users,
+  Shield,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Section, PageHeader } from "@/components/layout/section"
+import { Section, Container } from "@/components/layout/section"
 import { SectionIntro } from "@/components/sections/section-intro"
 import { TeamCard } from "@/components/cards/team-card"
 import { ValuePillar } from "@/components/blocks/value-blocks"
@@ -18,22 +27,79 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <PageHeader>
-        <div className="max-w-4xl">
-          <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
-            Over pixiQ
-          </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight mb-6 text-balance">
-            Wij creëren digitale belevingen met{" "}
-            <span className="bg-pixiq-gradient bg-clip-text text-transparent">
-              meetbare impact.
-            </span>
-          </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
-            Wij zijn een team van strategen, technologen en creatieve denkers, verenigd door één missie: organisaties helpen digitale belevingen te creëren die echte, meetbare resultaten opleveren.
-          </p>
+      {/* Hero / Intro */}
+      <section className="relative overflow-hidden pt-32 pb-24 lg:pt-44 lg:pb-36">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            className="absolute -top-24 right-[-120px] h-[420px] w-[620px] rounded-full blur-3xl"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(44,77,152,0.16) 0%, rgba(22,152,213,0.20) 100%)",
+            }}
+          />
+
+          <div
+            className="absolute top-[24%] -left-24 h-[280px] w-[280px] rounded-full blur-3xl"
+            style={{ background: "rgba(44,77,152,0.08)" }}
+          />
+
+          <div
+            className="absolute inset-x-0 top-0 h-[520px]"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.94) 42%, rgba(22,152,213,0.04) 100%)",
+              clipPath: "polygon(0 0, 100% 0, 100% 82%, 0 100%)",
+            }}
+          />
         </div>
-      </PageHeader>
+
+        <div className="pointer-events-none absolute inset-y-0 left-[47%] right-0 hidden lg:block">
+          <div
+            className="relative h-full w-full overflow-hidden"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.08) 8%, rgba(0,0,0,0.28) 16%, rgba(0,0,0,0.55) 26%, rgba(0,0,0,0.82) 38%, rgba(0,0,0,0.96) 52%, rgba(0,0,0,1) 68%)",
+              maskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.08) 8%, rgba(0,0,0,0.28) 16%, rgba(0,0,0,0.55) 26%, rgba(0,0,0,0.82) 38%, rgba(0,0,0,0.96) 52%, rgba(0,0,0,1) 68%)",
+            }}
+          >
+            <Image
+              src="/pictures/5-about-hero.jpg"
+              alt="Over pixiQ"
+              fill
+              priority
+              className="object-cover object-center opacity-80 scale-[1.02]"
+            />
+          </div>
+        </div>
+
+        <Container className="relative">
+          <div className="max-w-4xl">
+            <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
+              Over pixiQ
+            </p>
+
+            <h1 className="max-w-4xl text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-heading font-bold leading-[1.02] tracking-[-0.05em] text-black text-balance">
+              Wij creëren digitale belevingen met{" "}
+              <span
+                className="bg-clip-text text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(90deg, #2c4d98 0%, #1698d5 100%)",
+                }}
+              >
+                meetbare impact.
+              </span>
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#4b5563] sm:text-xl lg:text-[1.45rem]">
+              Wij zijn een team van strategen, technologen en creatieve denkers,
+              verenigd door één missie: organisaties helpen digitale belevingen
+              te creëren die echte, meetbare resultaten opleveren.
+            </p>
+          </div>
+        </Container>
+      </section>
 
       <StorySection />
       <MissionVisionSection />
@@ -69,18 +135,29 @@ function StorySection() {
           <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
             Ons verhaal
           </p>
+
           <h2 className="text-3xl lg:text-4xl font-heading text-foreground leading-tight mb-6 text-balance">
             Van visie tot betrouwbare partner
           </h2>
+
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
-              pixiQ werd opgericht met een duidelijke visie: de kloof overbruggen tussen vooruitstrevende digitale technologie en meetbare bedrijfsresultaten.
+              pixiQ werd opgericht met een duidelijke visie: de kloof
+              overbruggen tussen vooruitstrevende digitale technologie en
+              meetbare bedrijfsresultaten.
             </p>
+
             <p>
-              Vandaag zijn we uitgegroeid tot een betrouwbare partner voor toonaangevende organisaties in Europa. Onze geïntegreerde aanpak helpt klanten hun communicatie te versterken, doelgroepen te engageren en succes meetbaar te maken.
+              Vandaag zijn we uitgegroeid tot een betrouwbare partner voor
+              toonaangevende organisaties in Europa. Onze geïntegreerde aanpak
+              helpt klanten hun communicatie te versterken, doelgroepen te
+              engageren en succes meetbaar te maken.
             </p>
+
             <p>
-              Maar we staan nog maar aan het begin. Terwijl technologie evolueert, blijven wij focussen op het creëren van belevingen met echte, meetbare impact.
+              Maar we staan nog maar aan het begin. Terwijl technologie
+              evolueert, blijven wij focussen op het creëren van belevingen met
+              echte, meetbare impact.
             </p>
           </div>
         </div>
@@ -97,11 +174,16 @@ function MissionVisionSection() {
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-white/10 text-white mb-6">
             <Target className="h-7 w-7" />
           </div>
+
           <h2 className="text-2xl lg:text-3xl font-heading text-white mb-4">
             Onze missie
           </h2>
+
           <p className="text-lg text-white/70 leading-relaxed">
-            We helpen organisaties met het creëren van digitale belevingen die doelgroepen engageren en meetbare bedrijfsresultaten opleveren. Via een geïntegreerde aanpak verbinden we hardware, software, content en data.
+            We helpen organisaties met het creëren van digitale belevingen die
+            doelgroepen engageren en meetbare bedrijfsresultaten opleveren. Via
+            een geïntegreerde aanpak verbinden we hardware, software, content
+            en data.
           </p>
         </div>
 
@@ -109,11 +191,16 @@ function MissionVisionSection() {
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-white/10 text-white mb-6">
             <Eye className="h-7 w-7" />
           </div>
+
           <h2 className="text-2xl lg:text-3xl font-heading text-white mb-4">
             Onze visie
           </h2>
+
           <p className="text-lg text-white/70 leading-relaxed">
-            Een wereld waarin elke digitale beleving doelgericht is, elke interactie waardevol en elke investering meetbaar. Wij geloven in digitale ecosystemen die mensen, ruimtes en data naadloos met elkaar verbinden.
+            Een wereld waarin elke digitale beleving doelgericht is, elke
+            interactie waardevol en elke investering meetbaar. Wij geloven in
+            digitale ecosystemen die mensen, ruimtes en data naadloos met
+            elkaar verbinden.
           </p>
         </div>
       </div>
@@ -238,18 +325,27 @@ function CultureSection() {
           <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
             Hoe wij werken
           </p>
+
           <h2 className="text-3xl lg:text-4xl font-heading text-foreground leading-tight mb-6 text-balance">
             Een cultuur van kwaliteit en samenwerking
           </h2>
+
           <div className="space-y-4 text-muted-foreground leading-relaxed">
             <p>
-              Bij pixiQ geloven we dat sterk werk ontstaat wanneer getalenteerde mensen het vertrouwen krijgen om te doen waar ze goed in zijn.
+              Bij pixiQ geloven we dat sterk werk ontstaat wanneer
+              getalenteerde mensen het vertrouwen krijgen om te doen waar ze
+              goed in zijn.
             </p>
+
             <p>
-              Onze teams werken nauw samen met klanten en worden een verlengstuk van hun organisatie. We investeren in het begrijpen van hun uitdagingen, cultuur en doelstellingen.
+              Onze teams werken nauw samen met klanten en worden een verlengstuk
+              van hun organisatie. We investeren in het begrijpen van hun
+              uitdagingen, cultuur en doelstellingen.
             </p>
+
             <p>
-              We vieren successen samen, leren samen uit uitdagingen en blijven ons voortdurend verbeteren. Dat is de pixiQ-manier.
+              We vieren successen samen, leren samen uit uitdagingen en blijven
+              ons voortdurend verbeteren. Dat is de pixiQ-manier.
             </p>
           </div>
         </div>

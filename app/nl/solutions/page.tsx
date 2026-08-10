@@ -1,8 +1,15 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowRight, Layers, BarChart3, Workflow, Lightbulb } from "lucide-react"
+import Image from "next/image"
+import {
+  ArrowRight,
+  Layers,
+  BarChart3,
+  Workflow,
+  Lightbulb,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Section, PageHeader } from "@/components/layout/section"
+import { Section, Container } from "@/components/layout/section"
 import { SectionIntro } from "@/components/sections/section-intro"
 import { SolutionCardLarge } from "@/components/cards/solution-card"
 import { CaseCard } from "@/components/cards/case-card"
@@ -19,22 +26,79 @@ export const metadata: Metadata = {
 export default function SolutionsPage() {
   return (
     <>
-      <PageHeader>
-        <div className="max-w-4xl">
-          <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
-            Oplossingen
-          </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-foreground leading-tight mb-6 text-balance">
-            Van concept tot data:{" "}
-            <span className="bg-pixiq-gradient bg-clip-text text-transparent">
-              één partner, meetbare resultaten.
-            </span>
-          </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
-            Wij brengen hardware, software, content en data samen in geïntegreerde oplossingen die aantoonbare bedrijfsresultaten opleveren.
-          </p>
+      {/* Hero */}
+      <section className="relative overflow-hidden pt-32 pb-24 lg:pt-44 lg:pb-36">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div
+            className="absolute -top-24 right-[-120px] h-[420px] w-[620px] rounded-full blur-3xl"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(44,77,152,0.16) 0%, rgba(22,152,213,0.20) 100%)",
+            }}
+          />
+
+          <div
+            className="absolute top-[24%] -left-24 h-[280px] w-[280px] rounded-full blur-3xl"
+            style={{ background: "rgba(44,77,152,0.08)" }}
+          />
+
+          <div
+            className="absolute inset-x-0 top-0 h-[520px]"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.94) 42%, rgba(22,152,213,0.04) 100%)",
+              clipPath: "polygon(0 0, 100% 0, 100% 82%, 0 100%)",
+            }}
+          />
         </div>
-      </PageHeader>
+
+        <div className="pointer-events-none absolute inset-y-0 left-[47%] right-0 hidden lg:block">
+          <div
+            className="relative h-full w-full overflow-hidden"
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.08) 8%, rgba(0,0,0,0.28) 16%, rgba(0,0,0,0.55) 26%, rgba(0,0,0,0.82) 38%, rgba(0,0,0,0.96) 52%, rgba(0,0,0,1) 68%)",
+              maskImage:
+                "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.08) 8%, rgba(0,0,0,0.28) 16%, rgba(0,0,0,0.55) 26%, rgba(0,0,0,0.82) 38%, rgba(0,0,0,0.96) 52%, rgba(0,0,0,1) 68%)",
+            }}
+          >
+            <Image
+              src="/pictures/3-solutions-hero.jpg"
+              alt="pixiQ oplossingen"
+              fill
+              priority
+              className="object-cover object-[72%_center] opacity-80 scale-[1.02]"
+            />
+          </div>
+        </div>
+
+        <Container className="relative">
+          <div className="max-w-4xl">
+            <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
+              Oplossingen
+            </p>
+
+            <h1 className="max-w-4xl text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-heading font-bold leading-[1.02] tracking-[-0.05em] text-black text-balance">
+              Van concept tot data:{" "}
+              <span
+                className="bg-clip-text text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(90deg, #2c4d98 0%, #1698d5 100%)",
+                }}
+              >
+                één partner, meetbare resultaten.
+              </span>
+            </h1>
+
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#4b5563] sm:text-xl lg:text-[1.45rem]">
+              Wij brengen hardware, software, content en data samen in
+              geïntegreerde oplossingen die aantoonbare bedrijfsresultaten
+              opleveren.
+            </p>
+          </div>
+        </Container>
+      </section>
 
       <SolutionsGridSection />
       <MethodologySection />
@@ -132,9 +196,9 @@ function MethodologySection() {
   return (
     <Section className="bg-muted/30">
       <SectionIntro
-        eyebrow="Aanpak"
-        title="Hoe wij werken"
-        description="Een bewezen aanpak die consistente resultaten oplevert bij elk project."
+        eyebrow="Methodologie"
+        title="Hoe we werken"
+        description="Een bewezen proces dat consistente resultaten oplevert bij elk project."
         align="center"
       />
 
@@ -174,7 +238,8 @@ function CaseTeaserSection() {
   const cases = [
     {
       title: "Retail Network Transformation",
-      excerpt: "120+ locaties verbonden met realtime content management en geavanceerde analytics.",
+      excerpt:
+        "120+ locaties verbonden met realtime content management en geavanceerde analytics.",
       href: "/nl/cases/retail-experience-transformation",
       kpiValue: "+37%",
       kpiLabel: "dwell time",
@@ -182,7 +247,8 @@ function CaseTeaserSection() {
     },
     {
       title: "Corporate Campus Experience",
-      excerpt: "Geïntegreerde AV- en signage-oplossing voor een internationale corporate omgeving.",
+      excerpt:
+        "Geïntegreerde AV- en signage-oplossing voor een internationale corporate omgeving.",
       href: "/nl/cases/corporate-campus-experience",
       kpiValue: "+45%",
       kpiLabel: "engagement",
@@ -190,7 +256,8 @@ function CaseTeaserSection() {
     },
     {
       title: "Healthcare Communication Network",
-      excerpt: "Patiëntgerichte digitale ervaring over meerdere ziekenhuislocaties.",
+      excerpt:
+        "Patiëntgerichte digitale ervaring over meerdere ziekenhuislocaties.",
       href: "/nl/cases/healthcare-communication",
       kpiValue: "-28%",
       kpiLabel: "ervaren wachttijd",
@@ -203,7 +270,7 @@ function CaseTeaserSection() {
       <SectionIntro
         eyebrow="Cases"
         title="Oplossingen in de praktijk"
-        description="Ontdek hoe onze geïntegreerde aanpak meetbare resultaten oplevert."
+        description="Bekijk hoe onze geïntegreerde aanpak meetbare resultaten oplevert."
       />
 
       <div className="grid md:grid-cols-3 gap-6">
