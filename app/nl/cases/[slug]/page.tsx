@@ -7,25 +7,28 @@ import { Section, PageHeader } from "@/components/layout/section"
 import { SectionIntro } from "@/components/sections/section-intro"
 import { StatsBlock } from "@/components/blocks/kpi-block"
 import { CTASection } from "@/components/sections/cta-section"
-import { getCaseBySlug, getAllCaseSlugs } from "@/lib/data/cases"
+import {
+  getCaseBySlugNL,
+  getAllCaseSlugsNL,
+} from "@/lib/data/cases-nl"
 
 interface CasePageProps {
   params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
-  return getAllCaseSlugs().map((slug) => ({ slug }))
+  return getAllCaseSlugsNL().map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({
   params,
 }: CasePageProps): Promise<Metadata> {
   const { slug } = await params
-  const caseStudy = getCaseBySlug(slug)
+  const caseStudy = getCaseBySlugNL(slug)
 
   if (!caseStudy) {
     return {
-      title: "Case Study Not Found",
+      title: "Case niet gevonden",
     }
   }
 
@@ -37,7 +40,7 @@ export async function generateMetadata({
 
 export default async function CasePage({ params }: CasePageProps) {
   const { slug } = await params
-  const caseStudy = getCaseBySlug(slug)
+  const caseStudy = getCaseBySlugNL(slug)
 
   if (!caseStudy) {
     notFound()
@@ -49,10 +52,10 @@ export default async function CasePage({ params }: CasePageProps) {
       <PageHeader>
         <div className="max-w-4xl">
           <Link
-            href="/cases"
+            href="/nl/cases"
             className="inline-flex items-center text-sm text-muted-foreground hover:text-pixiq-primary transition-colors mb-6"
           >
-            ← All Cases
+            ← Alle cases
           </Link>
 
           <div className="flex flex-wrap items-center gap-3 mb-6">
@@ -89,7 +92,7 @@ export default async function CasePage({ params }: CasePageProps) {
               <div className="absolute inset-12 rounded-xl border border-pixiq-primary/10" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <span className="text-sm text-muted-foreground">
-                  Project imagery
+                  Projectafbeelding
                 </span>
               </div>
             </>
@@ -111,8 +114,8 @@ export default async function CasePage({ params }: CasePageProps) {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div>
             <SectionIntro
-              eyebrow="The Challenge"
-              title="Understanding the problem"
+              eyebrow="De uitdaging"
+              title="De uitdaging begrijpen"
             />
 
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -124,7 +127,7 @@ export default async function CasePage({ params }: CasePageProps) {
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted">
               <Image
                 src={caseStudy.challengeImage}
-                alt={`${caseStudy.title} challenge`}
+                alt={`${caseStudy.title} uitdaging`}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -141,7 +144,7 @@ export default async function CasePage({ params }: CasePageProps) {
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted order-2 lg:order-1">
               <Image
                 src={caseStudy.approachImage}
-                alt={`${caseStudy.title} approach`}
+                alt={`${caseStudy.title} aanpak`}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -151,8 +154,8 @@ export default async function CasePage({ params }: CasePageProps) {
 
           <div className="order-1 lg:order-2">
             <SectionIntro
-              eyebrow="Our Approach"
-              title="Designing the solution"
+              eyebrow="Onze aanpak"
+              title="De oplossing uitwerken"
             />
 
             <p className="text-lg text-muted-foreground leading-relaxed">
@@ -167,11 +170,11 @@ export default async function CasePage({ params }: CasePageProps) {
         <Section>
           <div className="mb-10">
             <p className="text-sm font-semibold text-pixiq-secondary uppercase tracking-wider mb-4">
-              Project Gallery
+              Projectgalerij
             </p>
 
             <h2 className="text-3xl lg:text-4xl font-heading text-foreground leading-tight">
-              Inside the experience
+              Een blik achter de schermen
             </h2>
           </div>
 
@@ -179,7 +182,7 @@ export default async function CasePage({ params }: CasePageProps) {
             <div className="relative min-h-[420px] rounded-2xl overflow-hidden bg-muted">
               <Image
                 src={caseStudy.galleryImages[0]}
-                alt={`${caseStudy.title} gallery image 1`}
+                alt={`${caseStudy.title} galerijbeeld 1`}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -191,7 +194,7 @@ export default async function CasePage({ params }: CasePageProps) {
                 <div className="relative aspect-[16/9] rounded-2xl overflow-hidden bg-muted">
                   <Image
                     src={caseStudy.galleryImages[1]}
-                    alt={`${caseStudy.title} gallery image 2`}
+                    alt={`${caseStudy.title} galerijbeeld 2`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -203,7 +206,7 @@ export default async function CasePage({ params }: CasePageProps) {
                 <div className="relative aspect-[16/9] rounded-2xl overflow-hidden bg-muted">
                   <Image
                     src={caseStudy.galleryImages[2]}
-                    alt={`${caseStudy.title} gallery image 3`}
+                    alt={`${caseStudy.title} galerijbeeld 3`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
@@ -220,8 +223,8 @@ export default async function CasePage({ params }: CasePageProps) {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div>
             <SectionIntro
-              eyebrow="The Result"
-              title="Measurable impact"
+              eyebrow="Het resultaat"
+              title="Meetbare impact"
             />
 
             <p className="text-lg text-muted-foreground leading-relaxed mb-10">
@@ -230,7 +233,7 @@ export default async function CasePage({ params }: CasePageProps) {
 
             <div className="p-6 rounded-xl bg-muted/50 border border-border">
               <p className="text-sm text-muted-foreground mb-2">
-                Related Solution
+                Gerelateerde oplossing
               </p>
 
               <Link
@@ -247,7 +250,7 @@ export default async function CasePage({ params }: CasePageProps) {
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted">
               <Image
                 src={caseStudy.resultImage}
-                alt={`${caseStudy.title} result`}
+                alt={`${caseStudy.title} resultaat`}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -259,10 +262,13 @@ export default async function CasePage({ params }: CasePageProps) {
 
       {/* CTA */}
       <CTASection
-        headline="Let's create yours"
-        description="Ready to achieve similar results for your organization?"
-        primaryCTA={{ text: "Book Meeting", href: "/contact" }}
-        secondaryCTA={{ text: "Explore solutions", href: "/solutions" }}
+        headline="Laten we uw project realiseren"
+        description="Klaar om een gelijkaardige impact te creëren voor uw organisatie?"
+        primaryCTA={{ text: "Plan een gesprek", href: "/nl/contact" }}
+        secondaryCTA={{
+          text: "Ontdek onze oplossingen",
+          href: "/nl/solutions",
+        }}
         variant="dark"
       />
     </>

@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -31,6 +31,17 @@ export function Header() {
   const isNl = pathname.startsWith("/nl")
 
   const navigation = isNl ? navigationNl : navigationEn
+
+  const enHref = isNl
+    ? pathname.replace(/^\/nl(?=\/|$)/, "") || "/"
+    : pathname
+
+  const nlHref = isNl
+    ? pathname
+    : pathname === "/"
+      ? "/nl"
+      : `/nl${pathname}`
+
   const homeHref = isNl ? "/nl" : "/"
   const contactHref = isNl ? "/nl/contact" : "/contact"
   const ctaText = isNl ? "Plan een gesprek" : "Book Meeting"
@@ -42,8 +53,12 @@ export function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10)
     }
+
     window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
   }, [])
 
   return (
@@ -57,16 +72,22 @@ export function Header() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
+          {/* Logo */}
           <Link href={homeHref} className="flex items-center">
             <Image
               src="/pixiQ_V1.png"
               alt="pixiQ"
-              className={cn("w-auto transition-all duration-300", isScrolled ? "h-7" : "h-10")}
+              className={cn(
+                "w-auto transition-all duration-300",
+                isScrolled ? "h-7" : "h-10"
+              )}
               width={140}
               height={40}
+              priority
             />
           </Link>
 
+          {/* Desktop navigation */}
           <nav className="hidden lg:flex items-center gap-8">
             {navigation.map((item) => (
               <Link
@@ -79,16 +100,18 @@ export function Header() {
             ))}
           </nav>
 
+          {/* Desktop actions */}
           <div className="hidden lg:flex items-center gap-4">
             <div className="flex items-center gap-2">
               <Link
-                href="/"
+                href={enHref}
                 className="rounded-md border border-[#2c4d98]/30 px-3 py-1 text-sm font-medium text-[#2c4d98] hover:bg-[#2c4d98]/10 transition"
               >
                 EN
               </Link>
+
               <Link
-                href="/nl"
+                href={nlHref}
                 className="rounded-md border border-[#2c4d98]/30 px-3 py-1 text-sm font-medium text-[#2c4d98] hover:bg-[#2c4d98]/10 transition"
               >
                 NL
@@ -98,23 +121,32 @@ export function Header() {
             <Button
               asChild
               className="hover:opacity-90 text-white font-medium px-6"
-              style={{ backgroundImage: "linear-gradient(to right, #1698d5, #2c4d98)" }}
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, #1698d5, #2c4d98)",
+              }}
             >
               <Link href={contactHref}>{ctaText}</Link>
             </Button>
           </div>
 
+          {/* Mobile menu button */}
           <button
             type="button"
             className="lg:hidden p-2 text-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
         </div>
       </div>
 
+      {/* Mobile menu */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-background border-t border-border">
           <div className="px-4 py-6 space-y-4">
@@ -123,8 +155,12 @@ export function Header() {
                 key={item.name}
                 href={item.href}
                 className="block text-base font-medium text-foreground transition-colors"
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#2c4d98")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.color = "#2c4d98")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = "")
+                }
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.name}
@@ -132,10 +168,17 @@ export function Header() {
             ))}
 
             <div className="flex items-center gap-2 pt-4 border-t border-border">
-              <Link href="/" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link
+                href={enHref}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 EN
               </Link>
-              <Link href="/nl" onClick={() => setIsMobileMenuOpen(false)}>
+
+              <Link
+                href={nlHref}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 NL
               </Link>
             </div>
@@ -143,9 +186,15 @@ export function Header() {
             <Button
               asChild
               className="rounded-md px-6 py-2.5 text-white font-semibold tracking-[0.01em] hover:opacity-95 transition-all duration-200"
-              style={{ backgroundImage: "linear-gradient(to right, #2c4d98, #1698d5)" }}
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, #2c4d98, #1698d5)",
+              }}
             >
-              <Link href={contactHref} onClick={() => setIsMobileMenuOpen(false)}>
+              <Link
+                href={contactHref}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 {ctaText}
               </Link>
             </Button>
